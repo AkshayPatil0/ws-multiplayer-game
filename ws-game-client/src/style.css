@@ -1,0 +1,88 @@
+* {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+:root {
+  --unit: 8;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app .header {
+  display: flex;
+  justify-content: space-between;
+
+  width: 80vh;
+}
+.app .ground {
+  height: calc(100 * var(--unit) * 1px);
+  width: calc(100 * var(--unit) * 1px);
+
+  border: 5px solid gray;
+
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+}
+
+.player {
+  --x: 0;
+  --y: 0;
+  --width: 5;
+  --height: 5;
+  --color: #2c3e50;
+  --score: 0;
+  position: absolute;
+  width: calc(var(--width) * var(--unit) * 1px);
+  height: calc(var(--height) * var(--unit) * 1px);
+  background-color: var(--color);
+
+  translate: calc(var(--x) * var(--unit) * 1px)
+    calc(var(--y) * var(--unit) * 1px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player::after {
+  counter-reset: score var(--score);
+  content: counter(score);
+  display: block;
+  color: black;
+
+  font-weight: 700;
+  font-size: calc(var(--height) / 2 * var(--unit) * 1px);
+}
+
+.ball {
+  --x: 0;
+  --y: 0;
+  --width: 2;
+  --height: 2;
+  position: absolute;
+  width: calc(var(--width) * var(--unit) * 1px);
+  height: calc(var(--height) * var(--unit) * 1px);
+  background-color: dodgerblue;
+
+  border-radius: 50%;
+
+  translate: calc(var(--x) * var(--unit) * 1px)
+    calc(var(--y) * var(--unit) * 1px);
+}
