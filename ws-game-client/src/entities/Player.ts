@@ -4,12 +4,20 @@ import Ball from "./Ball";
 import Entity from "./Entity";
 
 export default class Player extends Entity {
+  direction = {
+    x: 0,
+    y: 0,
+  };
   constructor(playerRef: HTMLDivElement, state: PlayerState) {
     super(playerRef);
     this.state = state;
   }
 
   move(x: number, y: number) {
+    this.direction = {
+      x: Math.sign(x),
+      y: Math.sign(y),
+    };
     this.x += x;
     this.y += y;
 
@@ -27,10 +35,12 @@ export default class Player extends Entity {
   }
 
   intersectsOpponent(player: Player) {
-    return (
-      Math.abs(player.x - this.x) < Math.max(player.width, this.width) &&
-      Math.abs(player.y - this.y) < Math.max(player.height, this.height)
-    );
+    const aLeftOfB = player.x + player.width < this.x;
+    const aRightOfB = player.x > this.x + this.width;
+    const aAboveB = player.y > this.y + this.height;
+    const aBelowB = player.y + player.height < this.y;
+
+    return !(aLeftOfB || aRightOfB || aAboveB || aBelowB);
   }
 
   get score() {

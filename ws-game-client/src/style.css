@@ -59,6 +59,7 @@ html {
   translate: calc(var(--x) * var(--unit) * 1px)
     calc(var(--y) * var(--unit) * 1px);
 
+  transition: translate 200ms;
   display: flex;
   justify-content: center;
   align-items: center;

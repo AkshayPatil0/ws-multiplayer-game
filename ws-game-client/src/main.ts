@@ -10,10 +10,13 @@ const update: FrameRequestCallback = () => {
   if (player && ball && player.intersectsBall(ball)) {
     socket.emit("intersect_ball", player.state);
   }
-  if (player && ball) {
+  if (player && opponents) {
     Object.entries(opponents).forEach(([oppId, opp]) => {
       if (player.intersectsOpponent(opp)) {
-        console.log("Player collision", oppId);
+        player.move(
+          -opp.width * player.direction.x,
+          -opp.height * player.direction.y
+        );
       }
     });
   }
@@ -49,24 +52,24 @@ document.addEventListener("keydown", (e) => {
 
   const speed = e.shiftKey ? 4 : 2;
 
-  const { x, y } = getMoveCoordinates(e.key, speed);
+  const { x, y } = getMoveDirection(e.key);
 
-  player.move(x, y);
+  player.move(x * speed, y * speed);
 });
 
-const getMoveCoordinates = (key: string, speed: number) => {
+const getMoveDirection = (key: string) => {
   switch (key) {
     case KEYS.ArrowLeft:
-      return { x: -speed, y: 0 };
+      return { x: -1, y: 0 };
 
     case KEYS.ArrowRight:
-      return { x: speed, y: 0 };
+      return { x: 1, y: 0 };
 
     case KEYS.ArrowUp:
-      return { x: 0, y: -speed };
+      return { x: 0, y: -1 };
 
     case KEYS.ArrowDown:
-      return { x: 0, y: speed };
+      return { x: 0, y: 1 };
 
     default:
       return { x: 0, y: 0 };
@@ -84,3 +87,8 @@ const getMoveCoordinates = (key: string, speed: number) => {
   //   player.move(0, +speed);
   // }
 };
+
+const waitMs = (ms: number) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
