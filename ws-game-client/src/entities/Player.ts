@@ -26,6 +26,13 @@ export default class Player extends Entity {
     );
   }
 
+  intersectsOpponent(player: Player) {
+    return (
+      Math.abs(player.x - this.x) < Math.max(player.width, this.width) &&
+      Math.abs(player.y - this.y) < Math.max(player.height, this.height)
+    );
+  }
+
   get score() {
     return this.getProperty("--score", (v) => parseInt(v));
   }

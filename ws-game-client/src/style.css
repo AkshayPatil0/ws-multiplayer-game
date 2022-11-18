@@ -13,27 +13,28 @@ ol {
   list-style: none;
 }
 
+html {
+  /* scroll-behavior: smooth; */
+}
+
 :root {
-  --unit: 8;
+  --unit: 16;
 }
 .app {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  width: max-content;
 }
 
-.app .header {
-  display: flex;
-  justify-content: space-between;
-
-  width: 80vh;
-}
 .app .ground {
   height: calc(100 * var(--unit) * 1px);
   width: calc(100 * var(--unit) * 1px);
+  border: 10px solid gray;
 
-  border: 5px solid gray;
+  margin: 24px;
 
   display: flex;
   flex-direction: column;
@@ -52,6 +53,8 @@ ol {
   width: calc(var(--width) * var(--unit) * 1px);
   height: calc(var(--height) * var(--unit) * 1px);
   background-color: var(--color);
+
+  border-radius: 0.25rem;
 
   translate: calc(var(--x) * var(--unit) * 1px)
     calc(var(--y) * var(--unit) * 1px);
