@@ -15,6 +15,7 @@ ol {
 
 html {
   /* scroll-behavior: smooth; */
+  overflow: hidden;
 }
 
 :root {
