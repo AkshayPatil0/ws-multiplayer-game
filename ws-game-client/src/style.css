@@ -43,6 +43,46 @@ html {
   position: relative;
 }
 
+.minimap {
+  --balltop: 0;
+  --ballleft: 0;
+  position: fixed;
+  height: calc(8 * var(--unit) * 1px);
+  width: calc(8 * var(--unit) * 1px);
+  border-radius: 50%;
+
+  bottom: 24px;
+  right: 24px;
+
+  background-color: lavender;
+}
+
+.minimap::after {
+  content: " ";
+  position: absolute;
+  top: calc(var(--balltop) * 1px);
+  left: calc(var(--ballleft) * 1px);
+
+  background-color: dodgerblue;
+
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+}
+
+.minimap .mini-player {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  background-color: black;
+
+  height: 24px;
+  width: 24px;
+  border-radius: 0.25rem;
+}
+
 .player {
   --x: 0;
   --y: 0;

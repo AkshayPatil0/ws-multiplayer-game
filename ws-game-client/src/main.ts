@@ -1,5 +1,5 @@
 import { KEYS } from "./constants/keys";
-// import { opponents } from "./services/opponents";
+import { minimap } from "./globals";
 import { socket } from "./services/socket";
 import { getBall, getPlayer, opponents } from "./services/store";
 import "./style.css";
@@ -7,11 +7,15 @@ import "./style.css";
 const update: FrameRequestCallback = () => {
   const player = getPlayer();
   const ball = getBall();
+
+  // Ball intersection
   if (player && ball && player.intersectsBall(ball)) {
     socket.emit("intersect_ball", player.state);
   }
+
+  // Player intersection
   if (player && opponents) {
-    Object.entries(opponents).forEach(([oppId, opp]) => {
+    Object.entries(opponents).forEach(([_oppId, opp]) => {
       if (player.intersectsOpponent(opp)) {
         player.move(
           -opp.width * player.direction.x,
@@ -20,6 +24,8 @@ const update: FrameRequestCallback = () => {
       }
     });
   }
+
+  // Scroll on move
   if (player) {
     const {
       top: playerTop,
@@ -41,6 +47,18 @@ const update: FrameRequestCallback = () => {
     document.documentElement.scrollLeft = idealScrollLeft;
   }
 
+  // minimap
+  if (player && ball) {
+    const dx = ball.x - player.x;
+    const dy = ball.y - player.y;
+
+    const theta = Math.atan2(dy, dx);
+    const r = minimap.ref.offsetHeight / 2;
+    const top = r * Math.sin(theta) + r - 10;
+    const left = r * Math.cos(theta) + r - 10;
+    minimap.ballTop = top;
+    minimap.ballLeft = left;
+  }
   requestAnimationFrame(update);
 };
 requestAnimationFrame(update);
@@ -87,8 +105,3 @@ const getMoveDirection = (key: string) => {
   //   player.move(0, +speed);
   // }
 };
-
-const waitMs = (ms: number) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
