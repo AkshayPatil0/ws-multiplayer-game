@@ -44,7 +44,7 @@ export default class Player extends Entity {
   }
 
   get score() {
-    return this.getProperty("--score", (v) => parseInt(v));
+    return this.getProperty("--score", { parse: (v) => parseInt(v) });
   }
   set score(val) {
     this.setProperty("--score", val);

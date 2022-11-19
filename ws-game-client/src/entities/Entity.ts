@@ -1,9 +1,14 @@
 export default class Entity {
   ref: HTMLDivElement;
-
-  BOUNDARY = 99;
+  groundRef: HTMLDivElement;
+  // BOUNDARY = 98;
   constructor(elementRef: HTMLDivElement) {
     this.ref = elementRef;
+    this.groundRef = document.getElementById("ground") as HTMLDivElement;
+  }
+
+  get BOUNDARY() {
+    return this.getProperty("--scale", { node: this.groundRef }) - 2;
   }
 
   get x() {
@@ -45,17 +50,24 @@ export default class Entity {
   }
 
   get color() {
-    return this.getProperty("--color", (v) => v);
+    return this.getProperty("--color", { parse: (v) => v });
   }
   set color(val) {
     this.setProperty("--color", val);
   }
-  getProperty(key: string, parse: (s: string) => any = parseFloat) {
-    return parse(getComputedStyle(this.ref).getPropertyValue(key));
+  getProperty(
+    key: string,
+    { parse = parseFloat, node = this.ref }: IGetPropertyOptions = {}
+  ) {
+    return parse(getComputedStyle(node).getPropertyValue(key));
   }
 
-  setProperty(key: string, val: number) {
-    this.ref.style.setProperty(key, val.toString());
+  setProperty(
+    key: string,
+    val: number,
+    { node = this.ref }: ISetPropertyOptions = {}
+  ) {
+    node.style.setProperty(key, val.toString());
   }
 
   getRandomCoordinate() {
@@ -65,3 +77,16 @@ export default class Entity {
     };
   }
 }
+
+type IGetPropertyOptions =
+  | {
+      parse?: (s: string) => any;
+      node?: HTMLDivElement;
+    }
+  | undefined;
+
+type ISetPropertyOptions =
+  | {
+      node?: HTMLDivElement;
+    }
+  | undefined;

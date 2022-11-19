@@ -31,11 +31,12 @@ html {
 }
 
 .app .ground {
-  height: calc(100 * var(--unit) * 1px);
-  width: calc(100 * var(--unit) * 1px);
-  border: 10px solid gray;
+  --scale: 200;
+  height: calc(var(--scale) * var(--unit) * 1px);
+  width: calc(var(--scale) * var(--unit) * 1px);
+  border: calc(1 * var(--unit) * 1px) solid gray;
 
-  margin: 24px;
+  margin-bottom: calc(11 * var(--unit) * 1px);
 
   display: flex;
   flex-direction: column;
@@ -51,8 +52,8 @@ html {
   width: calc(8 * var(--unit) * 1px);
   border-radius: 50%;
 
-  bottom: 24px;
-  right: 24px;
+  bottom: calc(1.5 * var(--unit) * 1px);
+  right: calc(1.5 * var(--unit) * 1px);
 
   background-color: lavender;
 }
@@ -65,8 +66,8 @@ html {
 
   background-color: dodgerblue;
 
-  height: 20px;
-  width: 20px;
+  height: calc(1.2 * var(--unit) * 1px);
+  width: calc(1.2 * var(--unit) * 1px);
   border-radius: 50%;
 }
 
@@ -78,8 +79,8 @@ html {
 
   background-color: black;
 
-  height: 24px;
-  width: 24px;
+  height: calc(1.5 * var(--unit) * 1px);
+  width: calc(1.5 * var(--unit) * 1px);
   border-radius: 0.25rem;
 }
 

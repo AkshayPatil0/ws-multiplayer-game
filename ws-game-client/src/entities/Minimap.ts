@@ -7,13 +7,13 @@ export default class Minimap extends Entity {
   }
 
   get ballTop() {
-    return this.getProperty("--balltop", (v) => v);
+    return this.getProperty("--balltop");
   }
   set ballTop(val) {
     this.setProperty("--balltop", val);
   }
   get ballLeft() {
-    return this.getProperty("--ballleft", (v) => v);
+    return this.getProperty("--ballleft");
   }
   set ballLeft(val) {
     this.setProperty("--ballleft", val);
