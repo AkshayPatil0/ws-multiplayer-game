@@ -2,9 +2,13 @@
   font-family: "Black Viper";
   src: url(../assets/fonts/BlackViper-L3Wz4.otf);
 }
+@font-face {
+  font-family: "Witcher Handwriting";
+  src: url(../assets/fonts/WitcherhandwritingRegular-jEDW9.otf);
+}
 
 * {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Witcher Handwriting", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
