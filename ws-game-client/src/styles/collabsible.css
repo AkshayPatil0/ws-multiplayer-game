@@ -1,0 +1,66 @@
+.collapsible-wrapper {
+  margin-bottom: 1.2rem 0;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.collapsible-toggle-lbl {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  height: 48px;
+  width: 48px;
+  display: block;
+
+  cursor: pointer;
+
+  border-radius: 7px;
+  transition: all 0.25s ease-out;
+}
+
+.collapsible-toggle-lbl img {
+  width: 100%;
+  height: 100%;
+}
+
+.collapsible-toggle-lbl:hover {
+  color: #7c5a0b;
+}
+
+.collapsible-content {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.25s ease-in-out;
+  padding: 0 16px 0 56px;
+  height: 100%;
+  flex: 1;
+}
+
+/* .menu-wrapper
+  > .collapsible-toggle:checked
+  + .collapsible-toggle-lbl
+  + .collapsible-content {
+  max-height: 100vh;
+} */
+/* .collapsible-toggle[data-coll-id="menu"]:checked
+  + .collapsible-toggle-lbl[data-coll-id="menu"]
+  + .collapsible-content[data-coll-id="menu"] {
+  max-height: 100vh;
+}
+
+.collapsible-toggle[data-coll-id="stats"]:checked
+  + .collapsible-toggle-lbl[data-coll-id="stats"]
+  + .collapsible-content[data-coll-id="stats"] {
+  max-height: 100vh;
+} */
+
+/* .collapsible-toggle:checked + .collapsible-toggle-lbl {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+} */

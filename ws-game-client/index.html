@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script type="module" src="/src/components/collabsible.ts"></script>
     <title>Vite App</title>
   </head>
   <body>
@@ -15,10 +17,35 @@
         <div class="player" id="player"></div>
         <div class="ball" id="ball"></div>
       </div>
-    </div>
-    <div class="minimap" id="minimap">
-      <div class="mini-player" />
-      <div class="mini-ball" />
+      <div class="menubar">
+        <!-- <div class="menu-wrapper collapsible-wrapper"> -->
+        <collabsible-wrapper
+          class="menu-wrapper"
+          data-id="menu"
+          data-icon-src="./src/assets/icons/Icon_Menu.png"
+        >
+          <div class="menu">
+            <button>Enter Game</button>
+            <button>Settings</button>
+            <button>Profile</button>
+            <button>Help</button>
+          </div>
+        </collabsible-wrapper>
+        <collabsible-wrapper
+          class="stats-wrapper"
+          data-id="stats"
+          data-icon-src="./src/assets/icons/Icon_Stats.png"
+        >
+          <div class="stat">
+            <span> Ground Size: 100 </span>
+            <span> Total Players: 10 </span>
+          </div>
+        </collabsible-wrapper>
+        <div class="minimap" id="minimap">
+          <div class="mini-player" />
+          <div class="mini-ball" />
+        </div>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

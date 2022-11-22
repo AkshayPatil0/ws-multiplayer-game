@@ -2,7 +2,10 @@ import { KEYS } from "./constants/keys";
 import { minimap } from "./globals";
 import { socket } from "./services/socket";
 import { getBall, getPlayer, opponents } from "./services/store";
-import "./style.css";
+import "./styles/index.css";
+import "./styles/collabsible.css";
+import "./styles/menubar.css";
+import "./styles/minimap.css";
 
 const update: FrameRequestCallback = () => {
   const player = getPlayer();
