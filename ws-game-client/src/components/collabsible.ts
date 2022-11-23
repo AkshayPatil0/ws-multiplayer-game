@@ -1,12 +1,9 @@
 class Collabsible extends HTMLElement {
   constructor() {
     super();
-    console.log("collabsible");
   }
 
   connectedCallback() {
-    // console.log("connectedCallback", { toggle, content });
-
     this.classList.add("collapsible-wrapper");
     const dataId = this.getAttribute("data-id");
     const content = this.firstElementChild as HTMLDivElement;
@@ -18,7 +15,6 @@ class Collabsible extends HTMLElement {
     toggle.classList.add("collapsible-toggle");
     toggle.type = "checkbox";
     toggle.addEventListener("change", (ev) => {
-      console.log({ toggle, content });
       if (toggle.checked) {
         content.style.maxHeight = "100vh";
       } else {

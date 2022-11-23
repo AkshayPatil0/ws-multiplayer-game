@@ -91,9 +91,6 @@ const ifPlayerIntersectsOpponents = (player: Player, opponents: IOpponents) => {
   if (opponents) {
     for (let opp in opponents) {
       if (player.intersectsOpponent(opponents[opp])) {
-        // player.move(-x * (speed + 1), -y * (speed + 1));
-        // player.move(-x * 2, -y * 2);
-        console.log("intersects");
         return true;
       }
     }

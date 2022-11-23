@@ -25,7 +25,6 @@ export default class Player extends Entity {
   }
 
   intersectsBall(ball: Ball) {
-    // console.log({ x: this.x, y: this.y, center: ball.center });
     return (
       ball.center.x > this.x &&
       ball.center.y > this.y &&
@@ -52,14 +51,11 @@ export default class Player extends Entity {
       y: this.y + this.height,
     };
 
-    console.log({ l1, r1, l2, r2 });
     // If one rectangle is on left side of other
     if (l1.x >= r2.x || l2.x >= r1.x) {
-      console.log("left");
       return false;
     } // If one rectangle is above other
     if (r1.y <= l2.y || r2.y <= l1.y) {
-      console.log("above");
       return false;
     }
 
