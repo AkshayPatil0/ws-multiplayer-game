@@ -35,12 +35,35 @@ export default class Player extends Entity {
   }
 
   intersectsOpponent(player: Player) {
-    const aLeftOfB = player.x + player.width < this.x;
-    const aRightOfB = player.x > this.x + this.width;
-    const aAboveB = player.y > this.y + this.height;
-    const aBelowB = player.y + player.height < this.y;
+    const l1 = {
+      x: player.x,
+      y: player.y,
+    };
+    const r1 = {
+      x: player.x + player.width,
+      y: player.y + player.height,
+    };
+    const l2 = {
+      x: this.x,
+      y: this.y,
+    };
+    const r2 = {
+      x: this.x + this.width,
+      y: this.y + this.height,
+    };
 
-    return !(aLeftOfB || aRightOfB || aAboveB || aBelowB);
+    console.log({ l1, r1, l2, r2 });
+    // If one rectangle is on left side of other
+    if (l1.x >= r2.x || l2.x >= r1.x) {
+      console.log("left");
+      return false;
+    } // If one rectangle is above other
+    if (r1.y <= l2.y || r2.y <= l1.y) {
+      console.log("above");
+      return false;
+    }
+
+    return true;
   }
 
   get score() {

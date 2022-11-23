@@ -64,10 +64,13 @@ export default class Entity {
 
   setProperty(
     key: string,
-    val: number,
+    val: number | string,
     { node = this.ref }: ISetPropertyOptions = {}
   ) {
-    node.style.setProperty(key, val.toString());
+    node.style.setProperty(
+      key,
+      typeof val === "number" ? Math.round(val).toString() : val
+    );
   }
 
   getRandomCoordinate() {

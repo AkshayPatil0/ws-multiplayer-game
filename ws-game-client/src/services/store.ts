@@ -3,7 +3,7 @@ import Player from "../entities/Player";
 import { ballRef, groundRef, playerRef } from "../globals";
 import { BallState, PlayerState } from "../shared/dtos";
 
-type IOpponents = { [id: string]: Player };
+export type IOpponents = { [id: string]: Player };
 let player: Player, ball: Ball;
 
 export const opponents: IOpponents = {};

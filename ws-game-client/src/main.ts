@@ -1,11 +1,12 @@
 import { KEYS } from "./constants/keys";
 import { minimap } from "./globals";
 import { socket } from "./services/socket";
-import { getBall, getPlayer, opponents } from "./services/store";
+import { getBall, getPlayer, IOpponents, opponents } from "./services/store";
 import "./styles/index.css";
 import "./styles/collabsible.css";
 import "./styles/menubar.css";
 import "./styles/minimap.css";
+import Player from "./entities/Player";
 
 const update: FrameRequestCallback = () => {
   const player = getPlayer();
@@ -16,17 +17,17 @@ const update: FrameRequestCallback = () => {
     socket.emit("intersect_ball", player.state);
   }
 
-  // Player intersection
-  if (player && opponents) {
-    Object.entries(opponents).forEach(([_oppId, opp]) => {
-      if (player.intersectsOpponent(opp)) {
-        player.move(
-          -opp.width * player.direction.x,
-          -opp.height * player.direction.y
-        );
-      }
-    });
-  }
+  // // Player intersection
+  // if (player && opponents) {
+  //   Object.entries(opponents).forEach(([_oppId, opp]) => {
+  //     if (player.intersectsOpponent(opp)) {
+  //       player.move(
+  //         -opp.width * player.direction.x,
+  //         -opp.height * player.direction.y
+  //       );
+  //     }
+  //   });
+  // }
 
   // Scroll on move
   if (player) {
@@ -66,7 +67,7 @@ const update: FrameRequestCallback = () => {
 };
 requestAnimationFrame(update);
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", async (e) => {
   e.preventDefault();
   const player = getPlayer();
   if (!player) return;
@@ -75,8 +76,30 @@ document.addEventListener("keydown", (e) => {
 
   const { x, y } = getMoveDirection(e.key);
 
-  player.move(x * speed, y * speed);
+  for (let i = 0; i < speed; i++) {
+    player.move(x, y);
+    if (ifPlayerIntersectsOpponents(player, opponents)) {
+      player.move(-x * 2 * speed, -y * 2 * speed);
+      // player.move(-x, -y);
+    }
+  }
+
+  // await new Promise((resolve) => setTimeout(resolve, 200));
 });
+
+const ifPlayerIntersectsOpponents = (player: Player, opponents: IOpponents) => {
+  if (opponents) {
+    for (let opp in opponents) {
+      if (player.intersectsOpponent(opponents[opp])) {
+        // player.move(-x * (speed + 1), -y * (speed + 1));
+        // player.move(-x * 2, -y * 2);
+        console.log("intersects");
+        return true;
+      }
+    }
+  }
+  return false;
+};
 
 const getMoveDirection = (key: string) => {
   switch (key) {
