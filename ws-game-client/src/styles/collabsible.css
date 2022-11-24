@@ -3,6 +3,9 @@
   position: relative;
   display: flex;
   align-items: flex-end;
+  min-width: 48px;
+  min-height: 100%;
+  overflow: hidden;
 }
 
 input[type="checkbox"] {
@@ -34,9 +37,10 @@ input[type="checkbox"] {
 }
 
 .collapsible-content {
-  max-height: 0px;
+  /* max-height: 0px;
+  max-width: 0px; */
   overflow: hidden;
-  transition: max-height 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
   padding: 0 16px 0 56px;
   height: 100%;
   flex: 1;

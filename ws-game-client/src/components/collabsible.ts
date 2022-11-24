@@ -16,16 +16,30 @@ class Collabsible extends HTMLElement {
     toggle.type = "checkbox";
     toggle.addEventListener("change", (ev) => {
       if (toggle.checked) {
-        content.style.maxHeight = "100vh";
+        // content.style.maxHeight = "100vh";
+        content.style.maxWidth = "100vh";
+        content.style.opacity = "1";
+        // content.style.display = "grid";
+        content.style.scale = "1";
+        content.style.translate = "0 0";
       } else {
-        content.style.maxHeight = "0";
+        // content.style.maxHeight = "0";
+
+        content.style.maxWidth = "0";
+        content.style.opacity = "0";
+
+        // content.style.display = "none";
+        content.style.scale = "0";
+        content.style.translate = "0 100%";
       }
     });
     this.appendChild(toggle);
 
+    const labelClass = this.getAttribute("data-label-class");
     const label = document.createElement("label");
     label.htmlFor = toggle.id;
     label.classList.add("collapsible-toggle-lbl");
+    labelClass && label.classList.add(labelClass);
 
     const labelIcon = document.createElement("img");
     labelIcon.src = this.getAttribute("data-icon-src") || "";

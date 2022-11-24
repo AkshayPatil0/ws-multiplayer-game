@@ -18,29 +18,41 @@
         <div class="ball" id="ball"></div>
       </div>
       <div class="menubar">
-        <!-- <div class="menu-wrapper collapsible-wrapper"> -->
-        <collabsible-wrapper
-          class="menu-wrapper"
-          data-id="menu"
-          data-icon-src="./src/assets/icons/Icon_Menu.png"
-        >
-          <div class="menu">
-            <button>Enter Game</button>
-            <button>Settings</button>
-            <button>Profile</button>
-            <button>Help</button>
-          </div>
-        </collabsible-wrapper>
-        <collabsible-wrapper
-          class="stats-wrapper"
-          data-id="stats"
-          data-icon-src="./src/assets/icons/Icon_Stats.png"
-        >
-          <div class="stat">
-            <span> Ground Size: 100 </span>
-            <span> Total Players: 10 </span>
-          </div>
-        </collabsible-wrapper>
+        <div class="collapsible-menubar-wrapper">
+          <collabsible-wrapper
+            class="menu-wrapper"
+            data-id="menu"
+            data-icon-src="./src/assets/icons/Icon_Menu.png"
+          >
+            <div class="menu">
+              <button>Enter Game</button>
+              <button>Settings</button>
+              <button>Profile</button>
+              <button>Help</button>
+            </div>
+          </collabsible-wrapper>
+          <collabsible-wrapper
+            class="stats-wrapper"
+            data-id="stats"
+            data-icon-src="./src/assets/icons/Icon_Stats.png"
+          >
+            <div class="stat">
+              <span> Ground Size: 100 </span>
+              <span> Total Players: 10 </span>
+            </div>
+          </collabsible-wrapper>
+          <collabsible-wrapper
+            class="info-wrapper"
+            data-id="info"
+            data-label-class="info-label-icon"
+            data-icon-src="./src/assets/icons/Icon_Info.png"
+          >
+            <div class="stat">
+              <span> Ground Size: 100 </span>
+              <span> Total Players: 10 </span>
+            </div>
+          </collabsible-wrapper>
+        </div>
         <div class="minimap" id="minimap">
           <div class="mini-player" />
           <div class="mini-ball" />
