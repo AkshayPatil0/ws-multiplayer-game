@@ -1,4 +1,3 @@
-import { socket } from "../services/socket";
 import { PlayerState } from "../shared/dtos";
 import Ball from "./Ball";
 import Entity from "./Entity";

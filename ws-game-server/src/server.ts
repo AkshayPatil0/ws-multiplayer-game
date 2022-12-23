@@ -31,18 +31,15 @@ const ballInterval = setInterval(() => {
 io.on("connection", (socket) => {
   console.log("connection", socket.id);
   socket.onAny((...args) => console.log(socket.id, args));
-  // const newPlayer = new Player();
-  // players[socket.id] = newPlayer;
-  // socket.emit("self_update", newPlayer.state);
-  // socket.emit("ball_moved", ball.state);
 
-  // connectedSockets.forEach((s) => {
-  //   s.emit("player_connected", socket.id, newPlayer.state);
-  //   socket.emit("player_connected", s.id, players[s.id].state);
-  // });
-  // connectedSockets.push(socket);
+  connectedSockets.forEach((s) => {
+    players[s.id]?.state &&
+      socket.emit("player_connected", s.id, players[s.id]?.state);
+  });
 
+  socket.emit("ball_moved", ball.state);
   connectedSockets.push(socket);
+
   socket.on("start_game", (name) => {
     const newPlayer = new Player(name);
     players[socket.id] = newPlayer;
