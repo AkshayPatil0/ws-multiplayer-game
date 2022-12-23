@@ -4,7 +4,7 @@ import Entity from "./Entity";
 export default class Ball extends Entity {
   lastMoved = 0;
 
-  radius = 2;
+  radius = 1;
   constructor(elementRef: HTMLDivElement, state: BallState) {
     super(elementRef);
     this.state = state;
@@ -37,5 +37,6 @@ export default class Ball extends Entity {
     this.y = state.y;
     this.height = state.height;
     this.width = state.width;
+    this.radius = this.width / 2;
   }
 }

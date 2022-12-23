@@ -14,14 +14,21 @@ export default class Player extends Entity {
   }
 
   move(x: number, y: number) {
-    this.direction = {
-      x: Math.sign(x),
-      y: Math.sign(y),
-    };
-    this.x += x;
-    this.y += y;
+    // this.direction = {
+    //   x: Math.sign(x),
+    //   y: Math.sign(y),
+    // };
+    // this.x += x;
+    // this.y += y;
 
-    socket.emit("player_update", this.state);
+    const newState: PlayerState = {
+      ...this.state,
+      direction: { x: Math.sign(x), y: Math.sign(y) },
+      x: this.x + x,
+      y: this.y + y,
+    };
+
+    return newState;
   }
 
   intersectsBall(ball: Ball) {
@@ -33,37 +40,15 @@ export default class Player extends Entity {
     );
   }
 
-  intersectsOpponent(player: Player) {
-    const l1 = {
-      x: player.x,
-      y: player.y,
-    };
-    const r1 = {
-      x: player.x + player.width,
-      y: player.y + player.height,
-    };
-    const l2 = {
-      x: this.x,
-      y: this.y,
-    };
-    const r2 = {
-      x: this.x + this.width,
-      y: this.y + this.height,
-    };
-
-    // If one rectangle is on left side of other
-    if (l1.x >= r2.x || l2.x >= r1.x) {
-      return false;
-    } // If one rectangle is above other
-    if (r1.y <= l2.y || r2.y <= l1.y) {
-      return false;
-    }
-
-    return true;
+  get name() {
+    return this.getProperty("--name", { parse: (v) => v });
   }
-
+  set name(val) {
+    this.setProperty("--name", val);
+    this.ref.setAttribute("data-name", val);
+  }
   get score() {
-    return this.getProperty("--score", { parse: (v) => parseInt(v) });
+    return this.getProperty("--score", { parse: (v) => v });
   }
   set score(val) {
     this.setProperty("--score", val);
@@ -77,21 +62,25 @@ export default class Player extends Entity {
 
   get state() {
     return {
+      name: this.name,
       color: this.color,
       score: this.score,
       x: this.x,
       y: this.y,
       height: this.height,
       width: this.width,
+      direction: this.direction,
     };
   }
   set state(state: PlayerState) {
     if (!state) return;
+    this.name = state.name;
     this.color = state.color;
     this.score = state.score;
     this.x = state.x;
     this.y = state.y;
     this.height = state.height;
     this.width = state.width;
+    this.direction = state.direction;
   }
 }

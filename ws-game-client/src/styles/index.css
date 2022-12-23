@@ -34,8 +34,23 @@ button {
 }
 
 :root {
-  --unit: 16;
+  --game-unit: 6;
+  --menu-unit: 16;
 }
+
+.game-btn {
+  background-image: url("../assets/icons/Item5.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  padding: 8px 16px;
+}
+
 .app {
   display: flex;
   flex-direction: column;
@@ -43,15 +58,16 @@ button {
   align-items: center;
 
   width: max-content;
+  min-width: 100vw;
 }
 
 .app .ground {
   --scale: 100;
-  height: calc(var(--scale) * var(--unit) * 1px);
-  width: calc(var(--scale) * var(--unit) * 1px);
-  border: calc(1 * var(--unit) * 1px) solid gray;
-
-  margin-bottom: calc(11 * var(--unit) * 1px);
+  height: calc(var(--scale) * var(--game-unit) * 1px);
+  width: calc(var(--scale) * var(--game-unit) * 1px);
+  border: calc(1 * var(--game-unit) * 1px) solid gray;
+  margin: auto;
+  margin-bottom: calc(11 * var(--game-unit) * 1px);
 
   display: flex;
   flex-direction: column;
@@ -62,19 +78,19 @@ button {
 .player {
   --x: 0;
   --y: 0;
-  --width: 5;
-  --height: 5;
+  --width: 2;
+  --height: 2;
   --color: #2c3e50;
-  --score: 0;
+  --name: "";
   position: absolute;
-  width: calc(var(--width) * var(--unit) * 1px);
-  height: calc(var(--height) * var(--unit) * 1px);
+  width: calc(var(--width) * var(--game-unit) * 1px);
+  height: calc(var(--height) * var(--game-unit) * 1px);
   background-color: var(--color);
 
   border-radius: 0.25rem;
 
-  translate: calc(var(--x) * var(--unit) * 1px)
-    calc(var(--y) * var(--unit) * 1px);
+  translate: calc(var(--x) * var(--game-unit) * 1px)
+    calc(var(--y) * var(--game-unit) * 1px);
 
   transition: translate 200ms;
   display: flex;
@@ -83,13 +99,18 @@ button {
 }
 
 .player::after {
-  counter-reset: score var(--score);
-  content: counter(score);
+  /* counter-reset: name var(--name);
+  content: counter(name); */
+  content: "@" attr(data-name);
   display: block;
-  color: black;
+  color: gray;
 
-  font-weight: 700;
-  font-size: calc(var(--height) / 2 * var(--unit) * 1px);
+  /* font-weight: 700; */
+  font-size: calc(var(--height) / 5 * var(--game-unit) * 1px);
+
+  position: absolute;
+  top: calc(0.2 * var(--height) * var(--game-unit) * -1px);
+  left: 0;
 }
 
 .ball {
@@ -98,12 +119,12 @@ button {
   --width: 2;
   --height: 2;
   position: absolute;
-  width: calc(var(--width) * var(--unit) * 1px);
-  height: calc(var(--height) * var(--unit) * 1px);
+  width: calc(var(--width) * var(--game-unit) * 1px);
+  height: calc(var(--height) * var(--game-unit) * 1px);
   background-color: dodgerblue;
 
   border-radius: 50%;
 
-  translate: calc(var(--x) * var(--unit) * 1px)
-    calc(var(--y) * var(--unit) * 1px);
+  translate: calc(var(--x) * var(--game-unit) * 1px)
+    calc(var(--y) * var(--game-unit) * 1px);
 }

@@ -1,33 +1,19 @@
-import { KEYS } from "./constants/keys";
-import { minimap } from "./globals";
 import { socket } from "./services/socket";
-import { getBall, getPlayer, IOpponents, opponents } from "./services/store";
+import { getBall, getPlayer, minimap } from "./services/store";
 import "./styles/index.css";
 import "./styles/collabsible.css";
 import "./styles/menubar.css";
 import "./styles/minimap.css";
-import Player from "./entities/Player";
+import "./styles/popup.css";
+import "./services/menu";
 
 const update: FrameRequestCallback = () => {
   const player = getPlayer();
   const ball = getBall();
-
   // Ball intersection
   if (player && ball && player.intersectsBall(ball)) {
     socket.emit("intersect_ball", player.state);
   }
-
-  // // Player intersection
-  // if (player && opponents) {
-  //   Object.entries(opponents).forEach(([_oppId, opp]) => {
-  //     if (player.intersectsOpponent(opp)) {
-  //       player.move(
-  //         -opp.width * player.direction.x,
-  //         -opp.height * player.direction.y
-  //       );
-  //     }
-  //   });
-  // }
 
   // Scroll on move
   if (player) {
@@ -66,65 +52,3 @@ const update: FrameRequestCallback = () => {
   requestAnimationFrame(update);
 };
 requestAnimationFrame(update);
-
-document.addEventListener("keydown", async (e) => {
-  e.preventDefault();
-  const player = getPlayer();
-  if (!player) return;
-
-  const speed = e.shiftKey ? 4 : 2;
-
-  const { x, y } = getMoveDirection(e.key);
-
-  for (let i = 0; i < speed; i++) {
-    player.move(x, y);
-    if (ifPlayerIntersectsOpponents(player, opponents)) {
-      player.move(-x * 2 * speed, -y * 2 * speed);
-      // player.move(-x, -y);
-    }
-  }
-
-  // await new Promise((resolve) => setTimeout(resolve, 200));
-});
-
-const ifPlayerIntersectsOpponents = (player: Player, opponents: IOpponents) => {
-  if (opponents) {
-    for (let opp in opponents) {
-      if (player.intersectsOpponent(opponents[opp])) {
-        return true;
-      }
-    }
-  }
-  return false;
-};
-
-const getMoveDirection = (key: string) => {
-  switch (key) {
-    case KEYS.ArrowLeft:
-      return { x: -1, y: 0 };
-
-    case KEYS.ArrowRight:
-      return { x: 1, y: 0 };
-
-    case KEYS.ArrowUp:
-      return { x: 0, y: -1 };
-
-    case KEYS.ArrowDown:
-      return { x: 0, y: 1 };
-
-    default:
-      return { x: 0, y: 0 };
-  }
-  // if (e.key === KEYS.ArrowLeft) {
-  //   player.move(-speed, 0);
-  // }
-  // if (e.key === KEYS.ArrowRight) {
-  //   player.move(speed, 0);
-  // }
-  // if (e.key === KEYS.ArrowUp) {
-  //   player.move(0, -speed);
-  // }
-  // if (e.key === KEYS.ArrowDown) {
-  //   player.move(0, +speed);
-  // }
-};

@@ -14,7 +14,7 @@ socket.on("connect", () => {
   console.log("connected");
 });
 
-socket.onAny(console.log);
+// socket.onAny(console.log);
 
 socket.on("player_connected", addOpponent);
 socket.on("player_disconnected", removeOpponent);

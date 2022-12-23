@@ -4,10 +4,10 @@ import Entity from "./Entity";
 export default class Ball extends Entity {
   lastMoved = 0;
 
-  radius = 2;
+  radius = 1;
   color = "dogerblue";
   constructor() {
-    super(2, 2);
+    super(1, 1);
   }
 
   get center() {

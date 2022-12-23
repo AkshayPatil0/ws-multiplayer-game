@@ -4,8 +4,8 @@
 
   align-self: flex-end;
   position: relative;
-  height: calc(8 * var(--unit) * 1px);
-  width: calc(8 * var(--unit) * 1px);
+  height: calc(8 * var(--game-unit) * 1px);
+  width: calc(8 * var(--game-unit) * 1px);
   border-radius: 50%;
 
   background-color: lavender;
@@ -19,8 +19,8 @@
 
   background-color: dodgerblue;
 
-  height: calc(1.2 * var(--unit) * 1px);
-  width: calc(1.2 * var(--unit) * 1px);
+  height: calc(1.2 * var(--game-unit) * 1px);
+  width: calc(1.2 * var(--game-unit) * 1px);
   border-radius: 50%;
 }
 
@@ -32,7 +32,7 @@
 
   background-color: black;
 
-  height: calc(1.5 * var(--unit) * 1px);
-  width: calc(1.5 * var(--unit) * 1px);
+  height: calc(1.5 * var(--game-unit) * 1px);
+  width: calc(1.5 * var(--game-unit) * 1px);
   border-radius: 0.25rem;
 }

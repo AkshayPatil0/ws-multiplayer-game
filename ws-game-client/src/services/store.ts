@@ -1,20 +1,33 @@
 import Ball from "../entities/Ball";
+import Minimap from "../entities/Minimap";
 import Player from "../entities/Player";
-import { ballRef, groundRef, playerRef } from "../globals";
 import { BallState, PlayerState } from "../shared/dtos";
+import { getOrCreateRef } from "../utils/html-ref";
+
+export const minimapRef = document.querySelector<HTMLDivElement>(
+  "#minimap"
+) as HTMLDivElement;
+
+export const minimap = new Minimap(minimapRef);
 
 export type IOpponents = { [id: string]: Player };
-let player: Player, ball: Ball;
+
+let player: Player, ball: Ball, gameStarted: boolean;
 
 export const opponents: IOpponents = {};
 
+export const isGameStated = () => gameStarted;
+
+export const setIsGameStarted = (val: boolean) => (gameStarted = val);
+
 export const getPlayer = () => player;
+
 export const setPlayer = (state: PlayerState) => {
   if (player) {
     player.state = state;
     return;
   }
-
+  let playerRef = getOrCreateRef("player", "player");
   player = new Player(playerRef, state);
 };
 
@@ -25,6 +38,7 @@ export const setBall = (state: BallState) => {
     return;
   }
 
+  let ballRef = getOrCreateRef("ball", "ball");
   ball = new Ball(ballRef, state);
 };
 
@@ -34,10 +48,7 @@ export const addOpponent = (id: string, playerState: PlayerState) => {
   const opponents = getOpponents();
   const existing = Object.keys(opponents).find((opId) => opId === id);
   if (existing) return;
-  const opponentRef = document.createElement("div");
-  opponentRef.id = `player${id}`;
-  opponentRef.classList.add("player");
-  groundRef.appendChild(opponentRef);
+  const opponentRef = getOrCreateRef(`player${id}`, "player");
   const opponent = new Player(opponentRef, playerState);
   opponents[id] = opponent;
 };

@@ -10,14 +10,8 @@
   </head>
   <body>
     <div class="app">
-      <!-- <div class="start-menu" id="start-menu">
-        <button>Start Game</button>
-      </div> -->
-      <div class="ground" id="ground">
-        <div class="player" id="player"></div>
-        <div class="ball" id="ball"></div>
-      </div>
-      <div class="menubar">
+      <div class="ground" id="ground"></div>
+      <div class="menubar" id="menubar">
         <div class="collapsible-menubar-wrapper">
           <collabsible-wrapper
             class="menu-wrapper"
@@ -25,10 +19,10 @@
             data-icon-src="./src/assets/icons/Icon_Menu.png"
           >
             <div class="menu">
-              <button>Enter Game</button>
-              <button>Settings</button>
-              <button>Profile</button>
-              <button>Help</button>
+              <button class="game-btn" id="start-btn">Enter Game</button>
+              <button class="game-btn">Settings</button>
+              <button class="game-btn">Profile</button>
+              <button class="game-btn">Help</button>
             </div>
           </collabsible-wrapper>
           <collabsible-wrapper
@@ -53,9 +47,28 @@
             </div>
           </collabsible-wrapper>
         </div>
-        <div class="minimap" id="minimap">
-          <div class="mini-player" />
-          <div class="mini-ball" />
+        <div class="minimap" id="minimap" style="display: none">
+          <div class="mini-player"></div>
+          <div class="mini-ball"></div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="popup">
+      <div class="popup-content">
+        <div class="popup-header">
+          <span class="popup-title">Enter Name</span>
+          <span class="popup-close" id="popup-close">X</span>
+        </div>
+        <div class="popup-body">
+          <input
+            class="popup-input"
+            type="text"
+            placeholder="Enter your name"
+            id="player-name"
+          />
+        </div>
+        <div class="popup-footer">
+          <button class="game-btn" id="game-start-btn">Start Game</button>
         </div>
       </div>
     </div>

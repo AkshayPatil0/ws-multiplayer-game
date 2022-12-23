@@ -3,12 +3,12 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: calc(12 * var(--unit) * 1px);
+  height: calc(12 * var(--menu-unit) * 1px);
   display: flex;
-  /* gap: calc(1.5 * var(--unit) * 1px); */
+  /* gap: calc(1.5 * var(--game-unit) * 1px); */
   /* justify-content: space-between; */
 
-  padding: calc(1.5 * var(--unit) * 1px);
+  padding: calc(1.5 * var(--menu-unit) * 1px);
 }
 
 .collapsible-menubar-wrapper {
@@ -24,17 +24,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   column-gap: 10px;
-  width: calc(36 * var(--unit) * 1px);
-}
-
-.menubar .menu button {
-  background-image: url("../assets/icons/Item5.png");
-  background-size: 100%;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
+  width: calc(36 * var(--menu-unit) * 1px);
 }
 
 /* .menu-wrapper,

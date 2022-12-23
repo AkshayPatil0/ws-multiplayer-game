@@ -15,6 +15,7 @@ const io = new Server(httpServer, {
 });
 
 let connectedSockets: Socket[] = [];
+// let playerSockets: Socket[] = [];
 
 const ball = new Ball();
 
@@ -29,26 +30,47 @@ const ballInterval = setInterval(() => {
 
 io.on("connection", (socket) => {
   console.log("connection", socket.id);
-  const newPlayer = new Player();
-  players[socket.id] = newPlayer;
-  socket.emit("self_update", newPlayer.state);
-  socket.emit("ball_moved", ball.state);
+  socket.onAny((...args) => console.log(socket.id, args));
+  // const newPlayer = new Player();
+  // players[socket.id] = newPlayer;
+  // socket.emit("self_update", newPlayer.state);
+  // socket.emit("ball_moved", ball.state);
 
-  connectedSockets.forEach((s) => {
-    s.emit("player_connected", socket.id, newPlayer.state);
-    socket.emit("player_connected", s.id, players[s.id].state);
-  });
+  // connectedSockets.forEach((s) => {
+  //   s.emit("player_connected", socket.id, newPlayer.state);
+  //   socket.emit("player_connected", s.id, players[s.id].state);
+  // });
+  // connectedSockets.push(socket);
+
   connectedSockets.push(socket);
+  socket.on("start_game", (name) => {
+    const newPlayer = new Player(name);
+    players[socket.id] = newPlayer;
+    socket.emit("self_update", newPlayer.state);
+    socket.emit("ball_moved", ball.state);
+
+    connectedSockets.forEach((s) => {
+      if (s.id === socket.id) return;
+      s.emit("player_connected", socket.id, newPlayer.state);
+
+      const opponentState = players[s.id]?.state;
+      opponentState && socket.emit("player_connected", s.id, opponentState);
+    });
+
+    // playerSockets.push(socket);
+  });
 
   socket.on("player_update", (state: PlayerState) => {
+    socket.emit("self_update", state);
     connectedSockets.forEach((s) => {
       if (s.id === socket.id) return;
       s.emit("opponent_update", socket.id, state);
     });
-    players[socket.id].state = state;
+    players[socket.id] && (players[socket.id].state = state);
   });
 
   socket.on("intersect_ball", () => {
+    if (!players[socket.id]) return;
     ball.moveRandom();
     socket.emit("ball_moved", ball.state);
     ballInterval.refresh();

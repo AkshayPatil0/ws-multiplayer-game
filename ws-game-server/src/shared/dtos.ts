@@ -1,4 +1,5 @@
 export interface PlayerState {
+  name: string;
   score: number;
   color: string;
   x: number;

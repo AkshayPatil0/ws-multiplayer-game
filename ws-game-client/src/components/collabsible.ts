@@ -14,21 +14,16 @@ class Collabsible extends HTMLElement {
     toggle.id = "collapsible" + dataId;
     toggle.classList.add("collapsible-toggle");
     toggle.type = "checkbox";
+    toggle.checked = true;
     toggle.addEventListener("change", (ev) => {
       if (toggle.checked) {
-        // content.style.maxHeight = "100vh";
         content.style.maxWidth = "100vh";
         content.style.opacity = "1";
-        // content.style.display = "grid";
         content.style.scale = "1";
         content.style.translate = "0 0";
       } else {
-        // content.style.maxHeight = "0";
-
         content.style.maxWidth = "0";
         content.style.opacity = "0";
-
-        // content.style.display = "none";
         content.style.scale = "0";
         content.style.translate = "0 100%";
       }
