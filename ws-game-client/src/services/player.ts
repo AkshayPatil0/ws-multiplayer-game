@@ -1,7 +1,13 @@
 import Player from "../entities/Player";
 import { PlayerState } from "../shared/dtos";
 import { getOrCreateRef } from "../utils/html-ref";
-import { getOpponents, setOpponents } from "../store";
+import { getOpponents, setOpponents, setPlayer } from "../store";
+import { updateStats } from "./stats";
+
+export const updatePlayer = (playerState: PlayerState) => {
+  setPlayer(playerState);
+  updateStats({ player: playerState });
+};
 
 export const addOpponent = (id: string, playerState: PlayerState) => {
   const opponents = getOpponents();
@@ -11,7 +17,8 @@ export const addOpponent = (id: string, playerState: PlayerState) => {
   const opponent = new Player(opponentRef, playerState);
 
   setOpponents({ ...opponents, [id]: opponent });
-  // opponents[id] = opponent;
+
+  updateStats({ opponent: { id, state: playerState } });
 };
 
 export const updateOpponent = (id: string, playerState: PlayerState) => {
@@ -19,6 +26,8 @@ export const updateOpponent = (id: string, playerState: PlayerState) => {
   opponents[id].state = playerState;
 
   setOpponents({ ...opponents });
+
+  updateStats({ opponent: { id, state: playerState } });
 };
 
 export const removeOpponent = (id: string) => {

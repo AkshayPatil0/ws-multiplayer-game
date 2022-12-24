@@ -49,6 +49,7 @@ const update: FrameRequestCallback = () => {
     minimap.ballTop = top;
     minimap.ballLeft = left;
   }
+
   requestAnimationFrame(update);
 };
 requestAnimationFrame(update);

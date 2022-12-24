@@ -11,8 +11,6 @@ export const minimapRef = document.querySelector<HTMLDivElement>(
 
 export const minimap = new Minimap(minimapRef);
 
-export type IOpponents = { [id: string]: PlayerState };
-
 let gameStarted: boolean;
 
 export const isGameStated = () => gameStarted;
