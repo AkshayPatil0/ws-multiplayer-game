@@ -83,13 +83,15 @@ button {
   --color: #2c3e50;
   --name: "";
   --avatar: "";
+  --direction-x: 1;
+  --direction-y: 1;
   position: absolute;
   width: calc(var(--width) * var(--game-unit) * 1px);
   height: calc(var(--height) * var(--game-unit) * 1px);
   /* background-color: var(--color); */
   background-size: 100%;
   /* border-radius: 0.25rem; */
-
+  /* scale: calc(var(--direction-x) + (var(--direction-y) * var(--direction-y))) 1; */
   translate: calc(var(--x) * var(--game-unit) * 1px)
     calc(var(--y) * var(--game-unit) * 1px);
 

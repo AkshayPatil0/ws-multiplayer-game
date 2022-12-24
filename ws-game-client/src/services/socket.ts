@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { setBall, setPlayer } from "../store";
+import { setBall } from "../store";
 import {
   addOpponent,
   removeOpponent,

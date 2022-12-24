@@ -7,7 +7,8 @@ export type PlayerState = {
   y: number;
   height: number;
   width: number;
-  direction: { x: number; y: number };
+  directionX: number;
+  directionY: number;
 };
 export type BallState = {
   color: string;

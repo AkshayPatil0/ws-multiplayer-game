@@ -3,10 +3,10 @@ import Ball from "./Ball";
 import Entity from "./Entity";
 
 export default class Player extends Entity {
-  direction = {
-    x: 0,
-    y: 0,
-  };
+  _directionX: number = 0;
+  _lastDirectionX: number = 0;
+  directionY: number = 0;
+
   constructor(playerRef: HTMLDivElement, state: PlayerState) {
     super(playerRef);
     this.state = state;
@@ -22,7 +22,8 @@ export default class Player extends Entity {
 
     const newState: PlayerState = {
       ...this.state,
-      direction: { x: Math.sign(x), y: Math.sign(y) },
+      directionX: Math.sign(x),
+      directionY: Math.sign(y),
       x: this.x + x,
       y: this.y + y,
     };
@@ -62,6 +63,15 @@ export default class Player extends Entity {
   set score(val) {
     this.setProperty("--score", val);
   }
+  get directionX() {
+    return this._directionX;
+  }
+  set directionX(val) {
+    this._directionX = val;
+    const dx = val == 0 ? this._lastDirectionX : val;
+    this.setProperty("scale", `${dx} 1`);
+    this._lastDirectionX = dx;
+  }
 
   setScore(s: number, update: boolean = true) {
     this.score = update ? this.score + s : s;
@@ -79,7 +89,8 @@ export default class Player extends Entity {
       y: this.y,
       height: this.height,
       width: this.width,
-      direction: this.direction,
+      directionX: this.directionX,
+      directionY: this.directionY,
     };
   }
   set state(state: PlayerState) {
@@ -92,6 +103,7 @@ export default class Player extends Entity {
     this.y = state.y;
     this.height = state.height;
     this.width = state.width;
-    this.direction = state.direction;
+    this.directionX = state.directionX;
+    this.directionY = state.directionY;
   }
 }
