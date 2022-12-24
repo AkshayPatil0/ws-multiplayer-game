@@ -40,7 +40,7 @@ button {
 
 .game-btn {
   background-image: url("../assets/icons/Item5.png");
-  background-size: 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 
@@ -48,7 +48,7 @@ button {
   outline: none;
   background-color: transparent;
 
-  padding: 8px 16px;
+  padding: 16px 24px;
 }
 
 .app {
@@ -82,12 +82,13 @@ button {
   --height: 2;
   --color: #2c3e50;
   --name: "";
+  --avatar: "";
   position: absolute;
   width: calc(var(--width) * var(--game-unit) * 1px);
   height: calc(var(--height) * var(--game-unit) * 1px);
-  background-color: var(--color);
-
-  border-radius: 0.25rem;
+  /* background-color: var(--color); */
+  background-size: 100%;
+  /* border-radius: 0.25rem; */
 
   translate: calc(var(--x) * var(--game-unit) * 1px)
     calc(var(--y) * var(--game-unit) * 1px);

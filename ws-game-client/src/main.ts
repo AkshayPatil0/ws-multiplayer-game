@@ -1,5 +1,5 @@
 import { socket } from "./services/socket";
-import { getBall, getPlayer, minimap } from "./services/store";
+import { getBall, getPlayer, minimap } from "./store";
 import "./styles/index.css";
 import "./styles/collabsible.css";
 import "./styles/menubar.css";

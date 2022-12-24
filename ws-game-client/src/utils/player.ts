@@ -1,5 +1,5 @@
 import { KEYS } from "../constants/keys";
-import { opponents } from "../services/store";
+import { getOpponents } from "../store";
 import { PlayerState } from "../shared/dtos";
 
 export const intersectsOpponent = (
@@ -35,9 +35,10 @@ export const intersectsOpponent = (
 };
 
 export const ifPlayerIntersectsOpponents = (PlayerState: PlayerState) => {
+  const opponents = getOpponents();
   if (opponents) {
     for (let opp in opponents) {
-      if (intersectsOpponent(PlayerState, opponents[opp].state)) {
+      if (intersectsOpponent(PlayerState, opponents[opp])) {
         return true;
       }
     }

@@ -4,9 +4,22 @@ import {
   ifPlayerIntersectsOpponents,
 } from "../utils/player";
 import { socket } from "./socket";
-import { getPlayer, minimap } from "./store";
+import { getPlayer, minimap } from "../store";
+import { hidePopup } from "./popup";
 
 export const startGame = () => {
+  const playerName = document
+    .querySelector<HTMLInputElement>("#player-name")
+    ?.value?.trim();
+
+  const avatar = document.querySelector<HTMLInputElement>(
+    "input[name=avatar]:checked"
+  )?.value;
+
+  if (!playerName || !avatar) return;
+  socket.emit("start_game", playerName, avatar);
+
+  hidePopup();
   document.documentElement.style.setProperty("--game-unit", "16");
   getOrCreateRef("player", "player");
 
@@ -18,12 +31,6 @@ export const startGame = () => {
   allCollapsibleToggles.forEach((toggle) => {
     if (toggle.checked) toggle.click();
   });
-
-  const playerNameInputRef =
-    document.querySelector<HTMLInputElement>("#player-name");
-
-  if (!playerNameInputRef) return;
-  socket.emit("start_game", playerNameInputRef.value);
 
   document.addEventListener("keydown", playerControlsHandler);
 };

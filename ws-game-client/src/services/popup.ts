@@ -20,7 +20,4 @@ const startButtonRef = document.querySelector(
   "#game-start-btn"
 ) as HTMLButtonElement;
 
-startButtonRef.addEventListener("click", () => {
-  hidePopup();
-  startGame();
-});
+startButtonRef.addEventListener("click", startGame);

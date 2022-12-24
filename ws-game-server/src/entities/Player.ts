@@ -6,11 +6,13 @@ export default class Player extends Entity {
   score = 0;
   color: string;
   name: string;
+  avatar: string;
 
-  constructor(name: string) {
+  constructor(name: string, avatar: string) {
     super(2, 2);
     this.color = getRandomColor();
     this.name = name;
+    this.avatar = avatar;
   }
 
   move(x: number, y: number) {
@@ -36,6 +38,7 @@ export default class Player extends Entity {
   get state() {
     return {
       name: this.name,
+      avatar: this.avatar,
       color: this.color,
       score: this.score,
       x: this.x,
@@ -46,6 +49,7 @@ export default class Player extends Entity {
   }
   set state(state: PlayerState) {
     this.name = state.name;
+    this.avatar = state.avatar;
     this.color = state.color;
     this.score = state.score;
     this.x = state.x;

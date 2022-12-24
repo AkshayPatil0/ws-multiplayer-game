@@ -1,12 +1,6 @@
 import { io } from "socket.io-client";
-// import { addOpponent, removeOpponent, updateOpponent } from "./opponents";
-import {
-  addOpponent,
-  removeOpponent,
-  setBall,
-  setPlayer,
-  updateOpponent,
-} from "./store";
+import { setBall, setPlayer } from "../store";
+import { addOpponent, removeOpponent, updateOpponent } from "./opponents";
 
 export const socket = io("http://localhost:4000");
 

@@ -46,8 +46,18 @@ export default class Player extends Entity {
     this.setProperty("--name", val);
     this.ref.setAttribute("data-name", val);
   }
+  get avatar() {
+    return this.getProperty("--avatar", { parse: (v) => v });
+  }
+  set avatar(val) {
+    this.setProperty(
+      "background-image",
+      `url("src/assets/avatars/${val}.png")`
+    );
+    // this.ref.setAttribute("data-avatar", val);
+  }
   get score() {
-    return this.getProperty("--score", { parse: (v) => v });
+    return this.getProperty("--score", { parse: (v) => parseFloat(v) });
   }
   set score(val) {
     this.setProperty("--score", val);
@@ -62,6 +72,7 @@ export default class Player extends Entity {
   get state() {
     return {
       name: this.name,
+      avatar: this.avatar,
       color: this.color,
       score: this.score,
       x: this.x,
@@ -74,6 +85,7 @@ export default class Player extends Entity {
   set state(state: PlayerState) {
     if (!state) return;
     this.name = state.name;
+    this.avatar = state.avatar;
     this.color = state.color;
     this.score = state.score;
     this.x = state.x;

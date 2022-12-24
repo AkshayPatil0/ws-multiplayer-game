@@ -40,8 +40,8 @@ io.on("connection", (socket) => {
   socket.emit("ball_moved", ball.state);
   connectedSockets.push(socket);
 
-  socket.on("start_game", (name) => {
-    const newPlayer = new Player(name);
+  socket.on("start_game", (name, avatar) => {
+    const newPlayer = new Player(name, avatar);
     players[socket.id] = newPlayer;
     socket.emit("self_update", newPlayer.state);
     socket.emit("ball_moved", ball.state);
