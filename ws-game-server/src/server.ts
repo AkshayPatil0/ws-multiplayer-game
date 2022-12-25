@@ -5,6 +5,10 @@ import Star from "./entities/Star";
 import Player from "./entities/Player";
 import { PlayerState } from "./shared/dtos";
 import { ClientToServerEvents, ServerToClientEvents } from "./shared/events";
+
+import { config } from "dotenv";
+config();
+
 const app = express();
 
 const httpServer = createServer(app);
@@ -97,5 +101,5 @@ const removePlayer = (socket: Socket) => {
   connectedSockets.forEach((s) => s.emit("player_disconnected", socket.id));
   delete players[socket.id];
 };
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 httpServer.listen(PORT, () => console.log(`listening on post ${PORT}`));
