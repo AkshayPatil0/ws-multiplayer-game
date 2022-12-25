@@ -11,6 +11,10 @@ config();
 
 const app = express();
 
+app.get("/", (req, res) => {
+  res.json({ success: true });
+});
+
 const httpServer = createServer(app);
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
