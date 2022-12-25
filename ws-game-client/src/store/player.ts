@@ -1,6 +1,6 @@
 import Player from "../entities/Player";
 import { PlayerState } from "../shared/dtos";
-import { getOrCreateRef } from "../utils/html-ref";
+import { getOrCreatePlayerRef, getOrCreateRef } from "../utils/html-ref";
 
 let player: Player | null = null;
 
@@ -17,7 +17,7 @@ export const setPlayer = (state: PlayerState | null) => {
     return;
   }
   if (!player && state) {
-    let playerRef = getOrCreateRef("player", "player");
+    let playerRef = getOrCreatePlayerRef("player");
     player = new Player(playerRef, state);
   }
 };

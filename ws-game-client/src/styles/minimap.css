@@ -17,7 +17,9 @@
   top: calc(var(--balltop) * 1px);
   left: calc(var(--ballleft) * 1px);
 
-  background-color: dodgerblue;
+  /* background-color: dodgerblue; */
+  background: url(../assets/icons/Icon_Star.png) no-repeat;
+  background-size: 100%;
 
   height: calc(1.2 * var(--game-unit) * 1px);
   width: calc(1.2 * var(--game-unit) * 1px);
@@ -30,7 +32,7 @@
   left: 50%;
   translate: -50% -50%;
 
-  background-color: black;
+  /* background-color: black; */
 
   height: calc(1.5 * var(--game-unit) * 1px);
   width: calc(1.5 * var(--game-unit) * 1px);

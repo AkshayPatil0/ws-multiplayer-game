@@ -37,34 +37,9 @@ input[type="checkbox"] {
 }
 
 .collapsible-content {
-  /* max-height: 0px;
-  max-width: 0px; */
   overflow: hidden;
   transition: all 0.25s ease-in-out;
   padding: 0 16px 0 56px;
   height: 100%;
   flex: 1;
 }
-
-/* .menu-wrapper
-  > .collapsible-toggle:checked
-  + .collapsible-toggle-lbl
-  + .collapsible-content {
-  max-height: 100vh;
-} */
-/* .collapsible-toggle[data-coll-id="menu"]:checked
-  + .collapsible-toggle-lbl[data-coll-id="menu"]
-  + .collapsible-content[data-coll-id="menu"] {
-  max-height: 100vh;
-}
-
-.collapsible-toggle[data-coll-id="stats"]:checked
-  + .collapsible-toggle-lbl[data-coll-id="stats"]
-  + .collapsible-content[data-coll-id="stats"] {
-  max-height: 100vh;
-} */
-
-/* .collapsible-toggle:checked + .collapsible-toggle-lbl {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-} */

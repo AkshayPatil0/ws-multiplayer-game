@@ -1,4 +1,4 @@
-import { getOrCreateRef } from "../utils/html-ref";
+import { getOrCreatePlayerRef, getOrCreateRef } from "../utils/html-ref";
 import { playerControlsHandler } from "../utils/player";
 import { socket } from "./socket";
 import { minimap, setIsGameStarted } from "../store";
@@ -19,7 +19,7 @@ export const startGame = () => {
 
   hidePopup();
   document.documentElement.style.setProperty("--game-unit", "16");
-  getOrCreateRef("player", "player");
+  getOrCreatePlayerRef("player");
 
   minimap.ref.style.display = "block";
   const allCollapsibleToggles = document.querySelectorAll<HTMLInputElement>(

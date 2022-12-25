@@ -2,7 +2,7 @@ import Ball from "../entities/Ball";
 import Minimap from "../entities/Minimap";
 import Player from "../entities/Player";
 import { BallState, PlayerState } from "../shared/dtos";
-import { getOrCreateRef } from "../utils/html-ref";
+import { getOrCreateRef, getOrCreateStarRef } from "../utils/html-ref";
 
 let ball: Ball;
 
@@ -13,6 +13,6 @@ export const setBall = (state: BallState) => {
     return;
   }
 
-  let ballRef = getOrCreateRef("ball", "ball");
+  let ballRef = getOrCreateStarRef();
   ball = new Ball(ballRef, state);
 };

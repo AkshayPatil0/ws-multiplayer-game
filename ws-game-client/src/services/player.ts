@@ -1,6 +1,6 @@
 import Player from "../entities/Player";
 import { PlayerState } from "../shared/dtos";
-import { getOrCreateRef } from "../utils/html-ref";
+import { getOrCreatePlayerRef } from "../utils/html-ref";
 import { getOpponents, setOpponents, setPlayer } from "../store";
 import { updateStats } from "./stats";
 
@@ -13,7 +13,7 @@ export const addOpponent = (id: string, playerState: PlayerState) => {
   const opponents = getOpponents();
   const existing = Object.keys(opponents).find((opId) => opId === id);
   if (existing) return;
-  const opponentRef = getOrCreateRef(`player${id}`, "player");
+  const opponentRef = getOrCreatePlayerRef(`player${id}`);
   const opponent = new Player(opponentRef, playerState);
 
   setOpponents({ ...opponents, [id]: opponent });

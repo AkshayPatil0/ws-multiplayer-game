@@ -1,6 +1,8 @@
 import Entity from "./Entity";
 
 export default class Minimap extends Entity {
+  _avatar: string = "";
+
   constructor(elementRef: HTMLDivElement) {
     super(elementRef);
     this.ballTop = 20;
@@ -17,5 +19,16 @@ export default class Minimap extends Entity {
   }
   set ballLeft(val) {
     this.setProperty("--ballleft", val);
+  }
+
+  get avatar() {
+    return this._avatar;
+  }
+
+  set avatar(val) {
+    this._avatar = val;
+    this.ref
+      .querySelector(".mini-player")
+      ?.setAttribute("src", `src/assets/avatars/${val}.png`);
   }
 }

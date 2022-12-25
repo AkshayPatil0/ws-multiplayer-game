@@ -1,4 +1,5 @@
 import { PlayerState } from "../shared/dtos";
+import { minimap } from "../store";
 import Ball from "./Ball";
 import Entity from "./Entity";
 
@@ -7,19 +8,14 @@ export default class Player extends Entity {
   _lastDirectionX: number = 0;
   directionY: number = 0;
 
+  _avatar: string = "";
+
   constructor(playerRef: HTMLDivElement, state: PlayerState) {
     super(playerRef);
     this.state = state;
   }
 
   move(x: number, y: number) {
-    // this.direction = {
-    //   x: Math.sign(x),
-    //   y: Math.sign(y),
-    // };
-    // this.x += x;
-    // this.y += y;
-
     const newState: PlayerState = {
       ...this.state,
       directionX: Math.sign(x),
@@ -48,14 +44,20 @@ export default class Player extends Entity {
     this.ref.setAttribute("data-name", val);
   }
   get avatar() {
-    return this.getProperty("--avatar", { parse: (v) => v });
+    // return this.getProperty("--avatar", { parse: (v) => v });
+    return this._avatar;
   }
   set avatar(val) {
-    this.setProperty(
-      "background-image",
-      `url("src/assets/avatars/${val}.png")`
-    );
-    // this.ref.setAttribute("data-avatar", val);
+    // this.setProperty(
+    //   "background-image",
+    //   `url("src/assets/avatars/${val}.png")`
+    // );
+    this._avatar = val;
+    this.ref
+      .querySelector(".avatar")
+      ?.setAttribute("src", `src/assets/avatars/${val}.png`);
+
+    minimap.avatar = val;
   }
   get score() {
     return this.getProperty("--score", { parse: (v) => parseFloat(v) });
@@ -69,14 +71,11 @@ export default class Player extends Entity {
   set directionX(val) {
     this._directionX = val;
     const dx = val == 0 ? this._lastDirectionX : val;
-    this.setProperty("scale", `${dx} 1`);
+    // this.setProperty("scale", `${dx} 1`);
+    this.ref
+      .querySelector<HTMLImageElement>(".avatar")
+      ?.style.setProperty("scale", `${dx} 1`);
     this._lastDirectionX = dx;
-  }
-
-  setScore(s: number, update: boolean = true) {
-    this.score = update ? this.score + s : s;
-    this.width++;
-    this.height++;
   }
 
   get state() {

@@ -9,7 +9,7 @@ export default class Player extends Entity {
   avatar: string;
 
   constructor(name: string, avatar: string) {
-    super(2, 2);
+    super(4, 4);
     this.color = getRandomColor();
     this.name = name;
     this.avatar = avatar;
@@ -31,8 +31,6 @@ export default class Player extends Entity {
 
   setScore(s: number, update: boolean = true) {
     this.score = update ? this.score + s : s;
-    this.width++;
-    this.height++;
   }
 
   get state() {

@@ -13,18 +13,7 @@
       <div class="ground" id="ground"></div>
       <div class="menubar" id="menubar">
         <div class="collapsible-menubar-wrapper">
-          <collabsible-wrapper
-            class="menu-wrapper"
-            data-id="menu"
-            data-icon-src="./src/assets/icons/Icon_Menu.png"
-          >
-            <div class="menu">
-              <button class="game-btn" id="start-btn">Enter Game</button>
-              <button class="game-btn">Settings</button>
-              <button class="game-btn">Profile</button>
-              <button class="game-btn">Help</button>
-            </div>
-          </collabsible-wrapper>
+          <button class="game-btn" id="start-btn">Enter Game</button>
           <collabsible-wrapper
             class="stats-wrapper"
             data-id="stats"
@@ -37,21 +26,34 @@
             </div>
           </collabsible-wrapper>
           <collabsible-wrapper
-            class="info-wrapper"
-            data-id="info"
-            data-label-class="info-label-icon"
-            data-icon-src="./src/assets/icons/Icon_Info.png"
+            class="attributes-wrapper"
+            data-id="attributes"
+            data-label-class="attributes-label-icon"
+            data-icon-src="./src/assets/icons/Icon_Heart.png"
           >
             <div class="attributes">
-              <a href="https://iconscout.com/icon-pack/among-us" target="_blank"
-                >Among Us Icon Pack</a
-              >
-              on <a href="https://iconscout.com">IconScout</a>
+              <h3>Thank You !!</h3>
+              <div>
+                <a
+                  href="https://iconscout.com/icon-pack/among-us"
+                  target="_blank"
+                  >Among Us Icon Pack</a
+                >
+                on <a href="https://iconscout.com">IconScout</a>
+              </div>
+              <div>
+                <a
+                  href="https://penzilla.itch.io/handdrawn-vector-icon-pack"
+                  target="_blank"
+                  >Handdrawn Vector Icon Pack
+                </a>
+                on <a href="https://penzilla.itch.io">Penzilla</a>
+              </div>
             </div>
           </collabsible-wrapper>
         </div>
         <div class="minimap" id="minimap" style="display: none">
-          <div class="mini-player"></div>
+          <img class="mini-player" />
           <div class="mini-ball"></div>
         </div>
       </div>
