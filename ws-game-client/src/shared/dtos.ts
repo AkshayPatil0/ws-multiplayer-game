@@ -10,7 +10,7 @@ export type PlayerState = {
   directionX: number;
   directionY: number;
 };
-export type BallState = {
+export type StarState = {
   color: string;
   x: number;
   y: number;

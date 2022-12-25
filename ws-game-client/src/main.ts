@@ -10,9 +10,9 @@ import "./services/menu";
 const update: FrameRequestCallback = () => {
   const player = getPlayer();
   const ball = getBall();
-  // Ball intersection
+  // Star intersection
   if (player && ball && player.intersectsBall(ball)) {
-    socket.emit("intersect_ball", player.state);
+    socket.emit("intersects_star");
   }
 
   // Scroll on move

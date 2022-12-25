@@ -1,14 +1,15 @@
 import express from "express";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
-import Ball from "./entities/Ball";
+import Star from "./entities/Star";
 import Player from "./entities/Player";
 import { PlayerState } from "./shared/dtos";
+import { ClientToServerEvents, ServerToClientEvents } from "./shared/events";
 const app = express();
 
 const httpServer = createServer(app);
 
-const io = new Server(httpServer, {
+const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
   cors: {
     origin: "*",
   },
@@ -17,7 +18,7 @@ const io = new Server(httpServer, {
 let connectedSockets: Socket[] = [];
 // let playerSockets: Socket[] = [];
 
-const ball = new Ball();
+const ball = new Star();
 
 const players: { [socketId: string]: Player } = {};
 
@@ -37,14 +38,14 @@ io.on("connection", (socket) => {
       socket.emit("player_connected", s.id, players[s.id]?.state);
   });
 
-  socket.emit("ball_moved", ball.state);
+  socket.emit("star_moved", ball.state);
   connectedSockets.push(socket);
 
   socket.on("start_game", (name, avatar) => {
     const newPlayer = new Player(name, avatar);
     players[socket.id] = newPlayer;
     socket.emit("self_update", newPlayer.state);
-    socket.emit("ball_moved", ball.state);
+    socket.emit("star_moved", ball.state);
 
     connectedSockets.forEach((s) => {
       if (s.id === socket.id) return;
@@ -66,10 +67,10 @@ io.on("connection", (socket) => {
     players[socket.id] && (players[socket.id].state = state);
   });
 
-  socket.on("intersect_ball", () => {
+  socket.on("intersects_star", () => {
     if (!players[socket.id]) return;
     ball.moveRandom();
-    socket.emit("ball_moved", ball.state);
+    socket.emit("star_moved", ball.state);
     ballInterval.refresh();
 
     players[socket.id].setScore(1);

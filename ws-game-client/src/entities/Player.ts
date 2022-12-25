@@ -1,6 +1,6 @@
 import { PlayerState } from "../shared/dtos";
 import { minimap } from "../store";
-import Ball from "./Ball";
+import Star from "./Star";
 import Entity from "./Entity";
 
 export default class Player extends Entity {
@@ -27,7 +27,7 @@ export default class Player extends Entity {
     return newState;
   }
 
-  intersectsBall(ball: Ball) {
+  intersectsBall(ball: Star) {
     return (
       ball.center.x > this.x &&
       ball.center.y > this.y &&

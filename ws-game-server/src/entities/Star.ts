@@ -1,7 +1,7 @@
-import { BallState } from "../shared/dtos";
+import { StarState } from "../shared/dtos";
 import Entity from "./Entity";
 
-export default class Ball extends Entity {
+export default class Star extends Entity {
   lastMoved = 0;
 
   radius = 1;
@@ -28,7 +28,7 @@ export default class Ball extends Entity {
       width: this.width,
     };
   }
-  set state(state: BallState) {
+  set state(state: StarState) {
     if (!state) return;
     this.color = state.color;
     this.x = state.x;

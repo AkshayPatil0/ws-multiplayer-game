@@ -8,7 +8,7 @@ export interface PlayerState {
   height: number;
   width: number;
 }
-export interface BallState {
+export interface StarState {
   color: string;
   x: number;
   y: number;
