@@ -4,7 +4,8 @@ export default defineConfig(({ mode }) => {
   return {
     base: "/",
     build: {
-      outDir: "../public/",
+      outDir: "./public/",
     },
+    root: "./client",
   };
 });
