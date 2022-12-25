@@ -13,6 +13,10 @@ const app = express();
 
 app.use(express.static("public"));
 
+app.get("/health", (req, res) => {
+  res.send("ok");
+});
+
 const httpServer = createServer(app);
 
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
