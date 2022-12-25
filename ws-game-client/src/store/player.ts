@@ -1,6 +1,6 @@
 import Player from "../entities/Player";
 import { PlayerState } from "../shared/dtos";
-import { getOrCreatePlayerRef, getOrCreateRef } from "../utils/html-ref";
+import { getOrCreatePlayerRef } from "../utils/html-ref";
 
 let player: Player | null = null;
 

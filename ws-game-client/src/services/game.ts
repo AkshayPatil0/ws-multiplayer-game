@@ -1,4 +1,4 @@
-import { getOrCreatePlayerRef, getOrCreateRef } from "../utils/html-ref";
+import { getOrCreatePlayerRef } from "../utils/html-ref";
 import { playerControlsHandler } from "../utils/player";
 import { socket } from "./socket";
 import { minimap, setIsGameStarted } from "../store";

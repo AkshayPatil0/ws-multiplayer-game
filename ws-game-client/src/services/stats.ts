@@ -1,3 +1,4 @@
+import { AVATARS } from "../constants/avatars";
 import { PlayerState } from "../shared/dtos";
 
 type StatsInput = {
@@ -47,15 +48,13 @@ const updateStatsLi = (
     ulRef.appendChild(liRef);
   }
 
-  // liRef.style.backgroundImage = `url("src/assets/avatars/${playerState.avatar}.png")`;
-
   let nameRef = document.querySelector<HTMLSpanElement>(`#${id} .stat-li-name`);
   if (!nameRef) {
     nameRef = document.createElement("span");
     nameRef.className = "stat-li-name";
     nameRef.style.setProperty(
       "--avatar",
-      `url("src/assets/avatars/${playerState.avatar}.png")`
+      `url("${AVATARS[playerState.avatar] || ""}")`
     );
     liRef.appendChild(nameRef);
   }

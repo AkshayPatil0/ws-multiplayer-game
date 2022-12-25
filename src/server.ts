@@ -11,9 +11,7 @@ config();
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.json({ success: true });
-});
+app.use(express.static("public"));
 
 const httpServer = createServer(app);
 
@@ -39,7 +37,6 @@ const ballInterval = setInterval(() => {
 
 io.on("connection", (socket) => {
   console.log("connection", socket.id);
-  socket.onAny((...args) => console.log(socket.id, args));
 
   connectedSockets.forEach((s) => {
     players[s.id]?.state &&

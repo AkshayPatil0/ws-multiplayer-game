@@ -8,15 +8,11 @@ import {
   updatePlayer,
 } from "./player";
 
-export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
-  "http://localhost:4000"
-);
+export const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io();
 
 socket.on("connect", () => {
   console.log("connected");
 });
-
-socket.onAny(console.log);
 
 socket.on("player_connected", addOpponent);
 socket.on("player_disconnected", removeOpponent);

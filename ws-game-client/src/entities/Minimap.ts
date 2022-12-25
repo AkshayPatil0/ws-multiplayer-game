@@ -1,3 +1,4 @@
+import { AVATARS } from "../constants/avatars";
 import Entity from "./Entity";
 
 export default class Minimap extends Entity {
@@ -29,6 +30,6 @@ export default class Minimap extends Entity {
     this._avatar = val;
     this.ref
       .querySelector(".mini-player")
-      ?.setAttribute("src", `src/assets/avatars/${val}.png`);
+      ?.setAttribute("src", AVATARS[val] || "");
   }
 }

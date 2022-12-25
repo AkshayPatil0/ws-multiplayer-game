@@ -6,7 +6,11 @@ class Collabsible extends HTMLElement {
   connectedCallback() {
     this.classList.add("collapsible-wrapper");
     const dataId = this.getAttribute("data-id");
-    const content = this.firstElementChild as HTMLDivElement;
+    const content = this.querySelector<HTMLDivElement>("div");
+
+    if (!content)
+      throw new Error("Collabsible content not found for " + dataId);
+
     content.classList.add("collapsible-content");
     if (!content) return;
 
@@ -15,7 +19,7 @@ class Collabsible extends HTMLElement {
     toggle.classList.add("collapsible-toggle");
     toggle.type = "checkbox";
     toggle.checked = true;
-    toggle.addEventListener("change", (ev) => {
+    toggle.addEventListener("change", () => {
       if (toggle.checked) {
         content.style.maxWidth = "100vh";
         content.style.opacity = "1";
@@ -36,12 +40,14 @@ class Collabsible extends HTMLElement {
     label.classList.add("collapsible-toggle-lbl");
     labelClass && label.classList.add(labelClass);
 
-    const labelIcon = document.createElement("img");
-    labelIcon.src = this.getAttribute("data-icon-src") || "";
+    const labelIcon = this.querySelector<HTMLImageElement>("img");
 
+    if (!labelIcon)
+      throw new Error("Collabsible label icon not found for " + dataId);
+
+    labelIcon.remove();
     label.appendChild(labelIcon);
     this.appendChild(label);
-    // const toggle = this.children.item(0) as HTMLInputElement;
   }
 }
 

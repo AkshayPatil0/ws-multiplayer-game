@@ -2,6 +2,7 @@ import { PlayerState } from "../shared/dtos";
 import { minimap } from "../store";
 import Star from "./Star";
 import Entity from "./Entity";
+import { AVATARS } from "../constants/avatars";
 
 export default class Player extends Entity {
   _directionX: number = 0;
@@ -44,18 +45,11 @@ export default class Player extends Entity {
     this.ref.setAttribute("data-name", val);
   }
   get avatar() {
-    // return this.getProperty("--avatar", { parse: (v) => v });
     return this._avatar;
   }
   set avatar(val) {
-    // this.setProperty(
-    //   "background-image",
-    //   `url("src/assets/avatars/${val}.png")`
-    // );
     this._avatar = val;
-    this.ref
-      .querySelector(".avatar")
-      ?.setAttribute("src", `src/assets/avatars/${val}.png`);
+    this.ref.querySelector(".avatar")?.setAttribute("src", AVATARS[val] || "");
 
     minimap.avatar = val;
   }

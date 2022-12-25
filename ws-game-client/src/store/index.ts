@@ -1,5 +1,4 @@
 import Minimap from "../entities/Minimap";
-import { PlayerState } from "../shared/dtos";
 
 export * from "./opponents";
 export * from "./player";
