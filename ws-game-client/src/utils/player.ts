@@ -1,6 +1,7 @@
 import { KEYS } from "../constants/keys";
-import { getOpponents } from "../store";
+import { getOpponents, getPlayer } from "../store";
 import { PlayerState } from "../shared/dtos";
+import { socket } from "../services/socket";
 
 export const intersectsOpponent = (
   player: PlayerState,
@@ -75,4 +76,22 @@ export const getMoveDirectionByKey = (key: string) => {
   // if (e.key === KEYS.ArrowDown) {
   //   player.move(0, +speed);
   // }
+};
+
+export const playerControlsHandler = (e: KeyboardEvent) => {
+  e.preventDefault();
+  const player = getPlayer();
+
+  if (!player) return;
+
+  const speed = e.shiftKey ? 2 : 1;
+
+  const { x, y } = getMoveDirectionByKey(e.key);
+
+  if (x == 0 && y == 0) return;
+  let newPlayerState = player.move(x * speed, y * speed);
+  if (ifPlayerIntersectsOpponents(newPlayerState)) {
+    newPlayerState = player.move(-x * speed, -y * speed);
+  }
+  socket.emit("player_update", newPlayerState);
 };

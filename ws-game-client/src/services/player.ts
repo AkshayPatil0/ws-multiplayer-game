@@ -4,9 +4,9 @@ import { getOrCreateRef } from "../utils/html-ref";
 import { getOpponents, setOpponents, setPlayer } from "../store";
 import { updateStats } from "./stats";
 
-export const updatePlayer = (playerState: PlayerState) => {
+export const updatePlayer = (playerState: PlayerState | null) => {
   setPlayer(playerState);
-  updateStats({ player: playerState });
+  updateStats({ state: playerState, own: true });
 };
 
 export const addOpponent = (id: string, playerState: PlayerState) => {
@@ -18,7 +18,7 @@ export const addOpponent = (id: string, playerState: PlayerState) => {
 
   setOpponents({ ...opponents, [id]: opponent });
 
-  updateStats({ opponent: { id, state: playerState } });
+  updateStats({ id, state: playerState });
 };
 
 export const updateOpponent = (id: string, playerState: PlayerState) => {
@@ -27,7 +27,7 @@ export const updateOpponent = (id: string, playerState: PlayerState) => {
 
   setOpponents({ ...opponents });
 
-  updateStats({ opponent: { id, state: playerState } });
+  updateStats({ id, state: playerState });
 };
 
 export const removeOpponent = (id: string) => {

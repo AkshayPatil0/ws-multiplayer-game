@@ -81,13 +81,20 @@ io.on("connection", (socket) => {
     });
   });
 
+  socket.on("exit_game", () => {
+    console.log("Player exited", socket.id);
+    removePlayer(socket);
+  });
   socket.on("disconnect", (reason) => {
     console.log("disconnected due to", reason, socket.id);
-    connectedSockets = connectedSockets.filter((s) => s.id !== socket.id);
-    connectedSockets.forEach((s) => s.emit("player_disconnected", socket.id));
-    delete players[socket.id];
+    removePlayer(socket);
   });
 });
 
+const removePlayer = (socket: Socket) => {
+  connectedSockets = connectedSockets.filter((s) => s.id !== socket.id);
+  connectedSockets.forEach((s) => s.emit("player_disconnected", socket.id));
+  delete players[socket.id];
+};
 const PORT = 4000;
 httpServer.listen(PORT, () => console.log(`listening on post ${PORT}`));

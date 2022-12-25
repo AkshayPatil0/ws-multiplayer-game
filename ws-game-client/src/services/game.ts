@@ -1,11 +1,9 @@
 import { getOrCreateRef } from "../utils/html-ref";
-import {
-  getMoveDirectionByKey,
-  ifPlayerIntersectsOpponents,
-} from "../utils/player";
+import { playerControlsHandler } from "../utils/player";
 import { socket } from "./socket";
-import { getPlayer, minimap } from "../store";
+import { minimap, setIsGameStarted } from "../store";
 import { hidePopup } from "./popup";
+import { updatePlayer } from "./player";
 
 export const startGame = () => {
   const playerName = document
@@ -32,23 +30,41 @@ export const startGame = () => {
     if (toggle.checked) toggle.click();
   });
 
+  setIsGameStarted(true);
+  const startBtn = document.getElementById("start-btn") as HTMLButtonElement;
+
+  startBtn.innerText = "Exit Game";
+  startBtn.style.color = "red";
   document.addEventListener("keydown", playerControlsHandler);
 };
 
-const playerControlsHandler = (e: KeyboardEvent) => {
-  e.preventDefault();
-  const player = getPlayer();
+export const exitGame = () => {
+  socket.emit("exit_game");
+  setIsGameStarted(false);
 
-  if (!player) return;
+  document.documentElement.style.setProperty("--game-unit", "6");
 
-  const speed = e.shiftKey ? 2 : 1;
+  minimap.ref.style.display = "none";
 
-  const { x, y } = getMoveDirectionByKey(e.key);
+  updatePlayer(null);
 
-  if (x == 0 && y == 0) return;
-  let newPlayerState = player.move(x * speed, y * speed);
-  if (ifPlayerIntersectsOpponents(newPlayerState)) {
-    newPlayerState = player.move(-x * speed, -y * speed);
-  }
-  socket.emit("player_update", newPlayerState);
+  const allCollapsibleToggles = document.querySelectorAll<HTMLInputElement>(
+    ".collapsible-toggle"
+  );
+
+  allCollapsibleToggles.forEach((toggle) => {
+    if (!toggle.checked) toggle.click();
+  });
+
+  const startBtn = document.getElementById("start-btn") as HTMLButtonElement;
+
+  startBtn.innerText = "Enter Game";
+  startBtn.style.color = "unset";
+  document.removeEventListener("keydown", playerControlsHandler);
 };
+
+const startButtonRef = document.querySelector(
+  "#game-start-btn"
+) as HTMLButtonElement;
+
+startButtonRef.addEventListener("click", startGame);

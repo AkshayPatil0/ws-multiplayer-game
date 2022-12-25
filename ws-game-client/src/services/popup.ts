@@ -1,5 +1,3 @@
-import { startGame } from "./game";
-
 export const showPopup = () => {
   const popupRef = document.querySelector("#popup") as HTMLDivElement;
   popupRef.style.display = "block";
@@ -15,9 +13,3 @@ const closeButtonRef = document.querySelector(
 ) as HTMLButtonElement;
 
 closeButtonRef.addEventListener("click", hidePopup);
-
-const startButtonRef = document.querySelector(
-  "#game-start-btn"
-) as HTMLButtonElement;
-
-startButtonRef.addEventListener("click", startGame);

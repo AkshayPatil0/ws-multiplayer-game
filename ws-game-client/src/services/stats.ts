@@ -1,14 +1,13 @@
 import { PlayerState } from "../shared/dtos";
 
-export const updateStats = ({
-  player,
-  opponent,
-}: {
-  player?: PlayerState;
-  opponent?: { id: string; state: PlayerState };
-}) => {
+type StatsInput = {
+  id?: string;
+  state: PlayerState | null;
+  own?: boolean;
+};
+
+export const updateStats = ({ id, state, own }: StatsInput) => {
   const statsRef = document.getElementById("stats");
-  console.log({ statsRef });
   if (!statsRef) return;
 
   let ulRef = document.querySelector<HTMLUListElement>("#stats-ul");
@@ -18,14 +17,21 @@ export const updateStats = ({
     statsRef.innerHTML = "";
     statsRef.appendChild(ulRef);
   }
-  console.log({ ulRef });
-  if (player) {
-    updateStatsLi("own-stat", player, ulRef);
+
+  let elId;
+
+  if (own) {
+    elId = "own-stat";
+  } else {
+    elId = `opponent-stat-${id}`;
   }
 
-  if (opponent?.id && opponent?.state) {
-    updateStatsLi(`opponent-stat-${opponent.id}`, opponent.state, ulRef);
+  if (state === null) {
+    deleteStatsLi(elId);
+    return;
   }
+
+  updateStatsLi(elId, state, ulRef);
 };
 
 const updateStatsLi = (
@@ -68,4 +74,9 @@ const updateStatsLi = (
   } else {
   }
   scoreRef.innerText = playerState.score.toString();
+};
+
+const deleteStatsLi = (id: string) => {
+  const liRef = document.getElementById(id);
+  if (liRef) liRef.remove();
 };
