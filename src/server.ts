@@ -12,10 +12,13 @@ config();
 
 const app = express();
 
-app.use(express.static(path.resolve("../public")));
-
 app.get("/health", (req, res) => {
   res.send("ok");
+});
+
+app.use(express.static("public"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "public", "index.html"));
 });
 
 const httpServer = createServer(app);
