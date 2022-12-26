@@ -5,13 +5,14 @@ import Star from "./entities/Star";
 import Player from "./entities/Player";
 import { PlayerState } from "./shared/dtos";
 import { ClientToServerEvents, ServerToClientEvents } from "./shared/events";
+import * as path from "path";
 
 import { config } from "dotenv";
 config();
 
 const app = express();
 
-app.use(express.static("public"));
+app.use(express.static(path.resolve("../public")));
 
 app.get("/health", (req, res) => {
   res.send("ok");
