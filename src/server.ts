@@ -7,8 +7,6 @@ import { PlayerState } from "./shared/dtos";
 import { ClientToServerEvents, ServerToClientEvents } from "./shared/events";
 import * as path from "path";
 
-import { exec } from "child_process";
-
 import { config } from "dotenv";
 config();
 
@@ -20,18 +18,6 @@ app.get("/health", (req, res) => {
 
 app.use("/assets", express.static("public/assets"));
 app.get("*", async (req, res) => {
-  console.log("here");
-  await new Promise<void>((resolve) => {
-    exec(`cd /app && ls -l`, (err, stdout, stderr) => {
-      if (err) {
-        console.log("err:", err);
-        return;
-      }
-      console.log("stdout:", stdout);
-      console.log("stderr:", stderr);
-      resolve();
-    });
-  });
   res.sendFile(path.resolve(__dirname, "../public/index.html"));
 });
 
