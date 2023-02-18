@@ -1,0 +1,5 @@
+{
+  "ignore": ["client/**"],
+  "watch": ["src/**", "public/**"],
+  "ext": "ts js json html css"
+}

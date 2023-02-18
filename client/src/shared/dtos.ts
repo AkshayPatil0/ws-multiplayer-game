@@ -1,4 +1,4 @@
-export type PlayerState = {
+export interface PlayerState {
   name: string;
   avatar: string;
   score: number;
@@ -9,11 +9,15 @@ export type PlayerState = {
   width: number;
   directionX: number;
   directionY: number;
-};
-export type StarState = {
+}
+export interface StarState {
   color: string;
   x: number;
   y: number;
   height: number;
   width: number;
-};
+}
+export interface GameState {
+  players: { [id: string]: PlayerState };
+  star: StarState;
+}

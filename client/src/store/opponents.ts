@@ -1,4 +1,5 @@
 import Player from "../entities/Player";
+import { updateStats } from "../services/stats";
 
 export type IOpponents = { [id: string]: Player };
 

@@ -50,8 +50,6 @@ export default class Player extends Entity {
   set avatar(val) {
     this._avatar = val;
     this.ref.querySelector(".avatar")?.setAttribute("src", AVATARS[val] || "");
-
-    minimap.avatar = val;
   }
   get score() {
     return this.getProperty("--score", { parse: (v) => parseFloat(v) });

@@ -1,4 +1,6 @@
+import { minimap } from ".";
 import Player from "../entities/Player";
+import { updateStats } from "../services/stats";
 import { PlayerState } from "../shared/dtos";
 import { getOrCreatePlayerRef } from "../utils/html-ref";
 

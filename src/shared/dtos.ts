@@ -15,3 +15,7 @@ export interface StarState {
   height: number;
   width: number;
 }
+export interface GameState {
+  players: { [id: string]: PlayerState };
+  star: StarState;
+}

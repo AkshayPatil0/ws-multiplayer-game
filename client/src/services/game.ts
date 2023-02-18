@@ -1,9 +1,16 @@
 import { getOrCreatePlayerRef } from "../utils/html-ref";
 import { playerControlsHandler } from "../utils/player";
 import { socket } from "./socket";
-import { minimap, setIsGameStarted } from "../store";
+import {
+  getRoomId,
+  minimap,
+  setIsGameStarted,
+  setRoomId,
+  setStar,
+} from "../store";
 import { hidePopup } from "./popup";
-import { updatePlayer } from "./player";
+import { updatePlayer, updateOpponent } from "./player";
+import { GameState } from "../shared/dtos";
 
 export const startGame = () => {
   const playerName = document
@@ -14,10 +21,12 @@ export const startGame = () => {
     "input[name=avatar]:checked"
   )?.value;
 
-  if (!playerName || !avatar) return;
-  socket.emit("start_game", playerName, avatar);
+  const roomId = getRoomId();
 
-  hidePopup();
+  if (!playerName || !avatar || !roomId) return;
+  socket.emit("start_game", playerName, avatar, roomId);
+
+  hidePopup("start-game-popup");
   document.documentElement.style.setProperty("--game-unit", "16");
   getOrCreatePlayerRef("player");
 
@@ -68,3 +77,15 @@ const startButtonRef = document.querySelector(
 ) as HTMLButtonElement;
 
 startButtonRef.addEventListener("click", startGame);
+
+export const updateGame = (gameState: GameState) => {
+  const { players, star } = gameState;
+  Object.entries(players).forEach(([id, player]) => {
+    if (id === socket.id) {
+      updatePlayer(player);
+      return;
+    }
+    updateOpponent(id, player);
+  });
+  setStar(star);
+};

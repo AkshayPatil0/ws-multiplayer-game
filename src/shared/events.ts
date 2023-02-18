@@ -1,4 +1,4 @@
-import { PlayerState, StarState } from "./dtos";
+import { GameState, PlayerState, StarState } from "./dtos";
 
 export interface ServerToClientEvents {
   player_connected: (id: string, state: PlayerState) => void;
@@ -6,11 +6,13 @@ export interface ServerToClientEvents {
   opponent_update: (id: string, state: PlayerState) => void;
   self_update: (state: PlayerState) => void;
   star_moved: (state: StarState) => void;
+  game_update: (state: GameState) => void;
 }
 
 export interface ClientToServerEvents {
-  start_game: (name: string, avatar: string) => void;
+  join_room: (roomId: string) => void;
+  start_game: (name: string, avatar: string, roomId: string) => void;
   exit_game: () => void;
-  player_update: (state: PlayerState) => void;
-  intersects_star: () => void;
+  player_update: (state: PlayerState, roomId: string) => void;
+  intersects_star: (roomId: string) => void;
 }

@@ -9,7 +9,7 @@ startBtn.addEventListener("click", () => {
     exitGame();
     return;
   }
-  showPopup();
+  showPopup("start-game-popup");
 });
 
 export {};

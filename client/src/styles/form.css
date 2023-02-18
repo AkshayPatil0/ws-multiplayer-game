@@ -1,0 +1,44 @@
+.popup-body {
+  font-size: 16px;
+  padding: 16px 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.popup-input {
+  font-size: 16px;
+  padding: 16px 16px;
+
+  background: url(../assets/icons/Item2.png) no-repeat;
+  background-size: 100% 100%;
+
+  outline: none;
+  border: none;
+
+  color: black;
+}
+
+.popup-footer {
+  text-align: right;
+}
+
+.popup-footer .popup-button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
 import { KEYS } from "../constants/keys";
-import { getOpponents, getPlayer } from "../store";
+import { getOpponents, getPlayer, getRoomId } from "../store";
 import { PlayerState } from "../shared/dtos";
 import { socket } from "../services/socket";
 
@@ -93,5 +93,6 @@ export const playerControlsHandler = (e: KeyboardEvent) => {
   if (ifPlayerIntersectsOpponents(newPlayerState)) {
     newPlayerState = player.move(-x * speed, -y * speed);
   }
-  socket.emit("player_update", newPlayerState);
+  const roomId = getRoomId();
+  if (roomId) socket.emit("player_update", newPlayerState, roomId);
 };

@@ -1,15 +1,17 @@
-export const showPopup = () => {
-  const popupRef = document.querySelector("#popup") as HTMLDivElement;
+export const showPopup = (id: string) => {
+  const popupRef = document.querySelector(`#${id}`) as HTMLDivElement;
   popupRef.style.display = "block";
 };
 
-export const hidePopup = () => {
-  const popupRef = document.querySelector("#popup") as HTMLDivElement;
-  popupRef.style.display = "none";
+export const hidePopup = (id: string) => {
+  const closeRef = document.querySelector(
+    `#${id} .popup-close`
+  ) as HTMLDivElement;
+  closeRef.click();
 };
 
-const closeButtonRef = document.querySelector(
-  "#popup-close"
-) as HTMLButtonElement;
+// const closeButtonRef = document.querySelector(
+//   "#popup-close"
+// ) as HTMLButtonElement;
 
-closeButtonRef.addEventListener("click", hidePopup);
+// closeButtonRef.addEventListener("click",(e) => hidePopup);
