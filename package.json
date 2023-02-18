@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon src/server.ts",
-    "dev:client": "vite client --config vite.config.js",
-    "dev:c": "tsc && vite build --watch --emptyOutDir",
-    "build:server": "tsc --build tsconfig.json",
     "start": "node dist/server.js",
+    "dev:server": "nodemon src/server.ts",
+    "dev:client": "tsc && vite build --watch --emptyOutDir",
+    "dev": "npm run dev:server & npm run dev:client",
+    "build:server": "tsc --build tsconfig.json",
     "build:client": "tsc && vite build",
     "build": "npm run build:server && npm run build:client",
     "preview": "vite preview"
