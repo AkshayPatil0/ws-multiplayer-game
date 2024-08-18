@@ -19,7 +19,7 @@ app.get("/health", (req, res) => {
 app.use("/assets", express.static("public/assets"));
 
 app.get("/play", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../public/game/index.html"));
+  res.sendFile(path.resolve(__dirname, "../public/game.html"));
 });
 
 app.get("/", async (req, res) => {

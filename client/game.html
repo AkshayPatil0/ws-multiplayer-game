@@ -2,11 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Room | Star Rush | Battle Royale</title>
+    <meta
+      name="description"
+      content="Join this room to start collecting stars and competing against friends. Let the star rush begin!"
+    />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
+    <meta
+      name="keyword"
+      content="multiplayer, battle royale, websockets, socketio, project, game"
+    />
 
+    <meta property="og:title" content="Room | Star Rush | Battle Royale" />
+    <meta
+      property="og:description"
+      content="Join this room to start collecting stars and competing against friends. Let the star rush begin!"
+    />
+    <meta property="og:image" content="image.png" />
+    <meta property="og:url" content="star-rush.akshayp.me" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Room | Star Rush | Battle Royale" />
+    <meta
+      name="twitter:description"
+      content="Join this room to start collecting stars and competing against friends. Let the star rush begin!"
+    />
+    <meta name="twitter:image" content="image.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/components/index.ts"></script>
-    <title>Vite App</title>
   </head>
   <body>
     <div class="game">
@@ -15,7 +40,7 @@
         <div class="collapsible-menubar-wrapper">
           <button class="game-btn" id="start-btn">Enter Game</button>
           <collabsible-wrapper class="stats-wrapper" data-id="stats">
-            <img src="../src/assets/icons/Icon_Stats.png" alt="stats" />
+            <img src="/src/assets/icons/Icon_Stats.png" alt="stats" />
             <div class="stat" id="stats">
               <ul>
                 <li>No players connected !!</li>
@@ -27,7 +52,7 @@
             data-id="attributes"
             data-label-class="attributes-label-icon"
           >
-            <img src="../src/assets/icons/Icon_Heart.png" alt="attributes" />
+            <img src="/src/assets/icons/Icon_Heart.png" alt="attributes" />
             <div class="attributes">
               <h3>Thank You !!</h3>
               <div>
@@ -55,7 +80,7 @@
       </div>
     </div>
     <popup-wrapper data-id="start-game-popup">
-      <img class="close" src="../src/assets/icons/Icon_X.png" />
+      <img class="close" src="/src/assets/icons/Icon_X.png" />
       <div class="body">
         <div class="section">
           <span class="popup-title">Enter Name</span>
@@ -72,55 +97,55 @@
             <div class="popup-avatar" data-name="avatar1">
               <input type="radio" name="avatar" value="avatar1" id="avatar1" />
               <label for="avatar1">
-                <img src="../src/assets/avatars/avatar1.png" alt="avatar1"
+                <img src="/src/assets/avatars/avatar1.png" alt="avatar1"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar2">
               <input type="radio" name="avatar" value="avatar2" id="avatar2" />
               <label for="avatar2">
-                <img src="../src/assets/avatars/avatar2.png" alt="avatar2"
+                <img src="/src/assets/avatars/avatar2.png" alt="avatar2"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar3">
               <input type="radio" name="avatar" value="avatar3" id="avatar3" />
               <label for="avatar3">
-                <img src="../src/assets/avatars/avatar3.png" alt="avatar3"
+                <img src="/src/assets/avatars/avatar3.png" alt="avatar3"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar4">
               <input type="radio" name="avatar" value="avatar4" id="avatar4" />
               <label for="avatar4">
-                <img src="../src/assets/avatars/avatar4.png" alt="avatar4"
+                <img src="/src/assets/avatars/avatar4.png" alt="avatar4"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar5">
               <input type="radio" name="avatar" value="avatar5" id="avatar5" />
               <label for="avatar5">
-                <img src="../src/assets/avatars/avatar5.png" alt="avatar5"
+                <img src="/src/assets/avatars/avatar5.png" alt="avatar5"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar6">
               <input type="radio" name="avatar" value="avatar6" id="avatar6" />
               <label for="avatar6">
-                <img src="../src/assets/avatars/avatar6.png" alt="avatar6"
+                <img src="/src/assets/avatars/avatar6.png" alt="avatar6"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar7">
               <input type="radio" name="avatar" value="avatar7" id="avatar7" />
               <label for="avatar7">
-                <img src="../src/assets/avatars/avatar7.png" alt="avatar7"
+                <img src="/src/assets/avatars/avatar7.png" alt="avatar7"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar8">
               <input type="radio" name="avatar" value="avatar8" id="avatar8" />
               <label for="avatar8">
-                <img src="../src/assets/avatars/avatar8.png" alt="avatar8"
+                <img src="/src/assets/avatars/avatar8.png" alt="avatar8"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar9">
               <input type="radio" name="avatar" value="avatar9" id="avatar9" />
               <label for="avatar9">
-                <img src="../src/assets/avatars/avatar9.png" alt="avatar9"
+                <img src="/src/assets/avatars/avatar9.png" alt="avatar9"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar10">
@@ -131,7 +156,7 @@
                 id="avatar10"
               />
               <label for="avatar10">
-                <img src="../src/assets/avatars/avatar10.png" alt="avatar10"
+                <img src="/src/assets/avatars/avatar10.png" alt="avatar10"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar11">
@@ -142,7 +167,7 @@
                 id="avatar11"
               />
               <label for="avatar11">
-                <img src="../src/assets/avatars/avatar11.png" alt="avatar11"
+                <img src="/src/assets/avatars/avatar11.png" alt="avatar11"
               /></label>
             </div>
             <div class="popup-avatar" data-name="avatar12">
@@ -153,7 +178,7 @@
                 id="avatar12"
               />
               <label for="avatar12">
-                <img src="../src/assets/avatars/avatar12.png" alt="avatar12"
+                <img src="/src/assets/avatars/avatar12.png" alt="avatar12"
               /></label>
             </div>
           </div>

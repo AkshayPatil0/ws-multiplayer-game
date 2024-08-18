@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           main: resolve(root, "index.html"),
-          game: resolve(root, "game", "index.html"),
+          game: resolve(root, "game.html"),
         },
       },
     },
