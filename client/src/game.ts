@@ -7,8 +7,9 @@ import "./styles/menubar.css";
 import "./styles/minimap.css";
 import "./styles/popup.css";
 import "./services/menu";
+import "../thumbnail.png";
 import { showPopup } from "./services/popup";
-
+import { addImageMeta } from "./utils/seo";
 const update: FrameRequestCallback = () => {
   const player = getPlayer();
   const ball = getStar();
@@ -61,3 +62,5 @@ const update: FrameRequestCallback = () => {
 };
 
 requestAnimationFrame(update);
+
+addImageMeta();

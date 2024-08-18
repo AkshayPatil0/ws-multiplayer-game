@@ -16,6 +16,9 @@ export default defineConfig(({ mode }) => {
           main: resolve(root, "index.html"),
           game: resolve(root, "game.html"),
         },
+        output: {
+          assetFileNames: `assets/[name].[ext]`,
+        },
       },
     },
     root,
@@ -26,5 +29,16 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
+    plugins: [
+      {
+        name: "add-data-preload-attr",
+        transformIndexHtml(html) {
+          return html.replace(
+            new RegExp('property="og:image"', "g"),
+            `property="og:image"`
+          );
+        },
+      },
+    ],
   };
 });

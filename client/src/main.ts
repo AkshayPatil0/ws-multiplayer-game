@@ -2,6 +2,8 @@ import "./styles/index.css";
 import "./styles/app.css";
 import "./styles/popup.css";
 import "./styles/form.css";
+import "../thumbnail.png";
+import { addImageMeta } from "./utils/seo";
 
 const joinRoom = () => {
   const roomId = document
@@ -20,3 +22,5 @@ const joinButtonRef = document.querySelector(
 ) as HTMLButtonElement;
 
 joinButtonRef.addEventListener("click", joinRoom);
+
+addImageMeta();
